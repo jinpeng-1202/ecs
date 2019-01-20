@@ -15,7 +15,9 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "hello";
+        Long a=System.currentTimeMillis();
+        System.out.println("time= "+a);
+        return "小juju 520 0_0 ";
     }
 
 
