@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.dao.TUserDao">  
+	<sql id="select_column_list">
+		device_version as deviceVersion,app_mobile as appMobile,app_type as appType,open_id as openId,push_id as pushId,face_time as faceTime,real_name as realName,wechat_no as wechatNo,back_shop_url as backShopUrl,back_index_url as backIndexUrl,ext_mobile as extMobile,password as password,update_time as updateTime,id_no as idNo,out_user_id as outUserId,operating_system as operatingSystem,ext_out_user_id as extOutUserId,resever as resever,id as id,register_channel as registerChannel,idcard_addr as idcardAddr,create_time as createTime,idcard_start_date as idcardStartDate,mobile as mobile,contract_reg_mark as contractRegMark,issue_agency as issueAgency,platform_code as platformCode,app_user_id as appUserId,idcard_end_date as idcardEndDate,status as status
+	</sql>
+	<sql id="insertcolumn_list">
+		device_version,app_mobile,app_type,open_id,push_id,face_time,real_name,wechat_no,back_shop_url,back_index_url,ext_mobile,password,update_time,id_no,out_user_id,operating_system,ext_out_user_id,resever,id,register_channel,idcard_addr,create_time,idcard_start_date,mobile,contract_reg_mark,issue_agency,platform_code,app_user_id,idcard_end_date,status
+	</sql>
+	<sql id="where_condition">
+		<if test="deviceVersion != null"> AND  device_version = #{deviceVersion}  </if>
+ 		<if test="appMobile != null"> AND  app_mobile = #{appMobile}  </if>
+ 		<if test="appType != null"> AND  app_type = #{appType}  </if>
+ 		<if test="openId != null"> AND  open_id = #{openId}  </if>
+ 		<if test="pushId != null"> AND  push_id = #{pushId}  </if>
+ 		<if test="faceTime != null"> AND  face_time = #{faceTime}  </if>
+ 		<if test="realName != null"> AND  real_name = #{realName}  </if>
+ 		<if test="wechatNo != null"> AND  wechat_no = #{wechatNo}  </if>
+ 		<if test="backShopUrl != null"> AND  back_shop_url = #{backShopUrl}  </if>
+ 		<if test="backIndexUrl != null"> AND  back_index_url = #{backIndexUrl}  </if>
+ 		<if test="extMobile != null"> AND  ext_mobile = #{extMobile}  </if>
+ 		<if test="password != null"> AND  password = #{password}  </if>
+ 		<if test="updateTime != null"> AND  update_time = #{updateTime}  </if>
+ 		<if test="idNo != null"> AND  id_no = #{idNo}  </if>
+ 		<if test="outUserId != null"> AND  out_user_id = #{outUserId}  </if>
+ 		<if test="operatingSystem != null"> AND  operating_system = #{operatingSystem}  </if>
+ 		<if test="extOutUserId != null"> AND  ext_out_user_id = #{extOutUserId}  </if>
+ 		<if test="resever != null"> AND  resever = #{resever}  </if>
+ 		<if test="id != null"> AND  id = #{id}  </if>
+ 		<if test="registerChannel != null"> AND  register_channel = #{registerChannel}  </if>
+ 		<if test="idcardAddr != null"> AND  idcard_addr = #{idcardAddr}  </if>
+ 		<if test="createTime != null"> AND  create_time = #{createTime}  </if>
+ 		<if test="idcardStartDate != null"> AND  idcard_start_date = #{idcardStartDate}  </if>
+ 		<if test="mobile != null"> AND  mobile = #{mobile}  </if>
+ 		<if test="contractRegMark != null"> AND  contract_reg_mark = #{contractRegMark}  </if>
+ 		<if test="issueAgency != null"> AND  issue_agency = #{issueAgency}  </if>
+ 		<if test="platformCode != null"> AND  platform_code = #{platformCode}  </if>
+ 		<if test="appUserId != null"> AND  app_user_id = #{appUserId}  </if>
+ 		<if test="idcardEndDate != null"> AND  idcard_end_date = #{idcardEndDate}  </if>
+ 		<if test="status != null"> AND  status = #{status}  </if>
+ 	</sql>
+
+	<sql id="set_condition">
+		<if test="deviceVersion != null">  device_version = #{deviceVersion}, </if>
+ 		<if test="appMobile != null">  app_mobile = #{appMobile}, </if>
+ 		<if test="appType != null">  app_type = #{appType}, </if>
+ 		<if test="openId != null">  open_id = #{openId}, </if>
+ 		<if test="pushId != null">  push_id = #{pushId}, </if>
+ 		<if test="faceTime != null">  face_time = #{faceTime}, </if>
+ 		<if test="realName != null">  real_name = #{realName}, </if>
+ 		<if test="wechatNo != null">  wechat_no = #{wechatNo}, </if>
+ 		<if test="backShopUrl != null">  back_shop_url = #{backShopUrl}, </if>
+ 		<if test="backIndexUrl != null">  back_index_url = #{backIndexUrl}, </if>
+ 		<if test="extMobile != null">  ext_mobile = #{extMobile}, </if>
+ 		<if test="password != null">  password = #{password}, </if>
+ 		<if test="updateTime != null">  update_time = #{updateTime}, </if>
+ 		<if test="idNo != null">  id_no = #{idNo}, </if>
+ 		<if test="outUserId != null">  out_user_id = #{outUserId}, </if>
+ 		<if test="operatingSystem != null">  operating_system = #{operatingSystem}, </if>
+ 		<if test="extOutUserId != null">  ext_out_user_id = #{extOutUserId}, </if>
+ 		<if test="resever != null">  resever = #{resever}, </if>
+ 		<if test="id != null">  id = #{id}, </if>
+ 		<if test="registerChannel != null">  register_channel = #{registerChannel}, </if>
+ 		<if test="idcardAddr != null">  idcard_addr = #{idcardAddr}, </if>
+ 		<if test="createTime != null">  create_time = #{createTime}, </if>
+ 		<if test="idcardStartDate != null">  idcard_start_date = #{idcardStartDate}, </if>
+ 		<if test="mobile != null">  mobile = #{mobile}, </if>
+ 		<if test="contractRegMark != null">  contract_reg_mark = #{contractRegMark}, </if>
+ 		<if test="issueAgency != null">  issue_agency = #{issueAgency}, </if>
+ 		<if test="platformCode != null">  platform_code = #{platformCode}, </if>
+ 		<if test="appUserId != null">  app_user_id = #{appUserId}, </if>
+ 		<if test="idcardEndDate != null">  idcard_end_date = #{idcardEndDate}, </if>
+ 		<if test="status != null">  status = #{status}, </if>
+ 	</sql>
+
+
+	<insert id="insert" parameterType="com.jin.model.TUser"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
+		 insert into t_user		(<include refid="insertcolumn_list" />)		values 
+		(		 #{deviceVersion},#{appMobile},#{appType},#{openId},#{pushId},#{faceTime},#{realName},#{wechatNo},#{backShopUrl},#{backIndexUrl},#{extMobile},#{password},#{updateTime},#{idNo},#{outUserId},#{operatingSystem},#{extOutUserId},#{resever},#{id},#{registerChannel},#{idcardAddr},#{createTime},#{idcardStartDate},#{mobile},#{contractRegMark},#{issueAgency},#{platformCode},#{appUserId},#{idcardEndDate},#{status}) 
+	</insert> 
+
+	<insert id="insertBatch" parameterType="ArrayList"> 
+		 insert into t_user		(<include refid="insertcolumn_list" />)		 values 
+		 <foreach collection="list" item="obj"  index="index" separator="," >  
+			(		 #{obj.deviceVersion},#{obj.appMobile},#{obj.appType},#{obj.openId},#{obj.pushId},#{obj.faceTime},#{obj.realName},#{obj.wechatNo},#{obj.backShopUrl},#{obj.backIndexUrl},#{obj.extMobile},#{obj.password},#{obj.updateTime},#{obj.idNo},#{obj.outUserId},#{obj.operatingSystem},#{obj.extOutUserId},#{obj.resever},#{obj.id},#{obj.registerChannel},#{obj.idcardAddr},#{obj.createTime},#{obj.idcardStartDate},#{obj.mobile},#{obj.contractRegMark},#{obj.issueAgency},#{obj.platformCode},#{obj.appUserId},#{obj.idcardEndDate},#{obj.status}) 
+ 		</foreach>  
+	</insert> 
+
+	 <update id="update" parameterType="com.jin.model.TUser"> 
+		 update   t_user  
+		 <set> 
+			 <include refid="set_condition" />  
+		</set>  
+		 where id=#{id}
+	</update> 
+	 <delete id="delete" parameterType="java.lang.Long">
+		delete from t_user where id = #{id}
+	 </delete>
+
+		<select id="getObjectById"  parameterType="java.lang.Long" resultType="com.jin.model.TUser"> 
+       select 	 	 <include refid="select_column_list" /> 
+		 from t_user a   WHERE id = #{id}
+ 	 </select> 
+ 	  <select id="getList" parameterType="com.jin.model.TUser" resultType="com.jin.model.TUser">
+ 	 	 select  <include refid="select_column_list" /> 
+		 from  t_user a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		 <if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+	</select> 
+
+	<select id="getListForPageCount"  parameterType="java.util.HashMap" resultType="java.lang.Long"> 
+     select count(1) as value from t_user a 
+ 		 <where>
+			  <include refid="where_condition" />
+		 </where>
+	 </select> 
+ 
+	 <select id="getListForPage" parameterType="java.util.HashMap" resultType="com.jin.model.TUser">
+		  select <include refid="select_column_list" />  
+		  from t_user a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		<if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+		 LIMIT   #{startRow},  #{endRow} 
+ 	 </select>
+
+<!--*********************************以下可以写自定义的语句*****************************-->
+
+
+</mapper>

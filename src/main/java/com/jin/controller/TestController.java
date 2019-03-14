@@ -4,6 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * @author jinpeng
  * @date 2018/12/28.
@@ -14,10 +18,9 @@ public class TestController {
 
 
     @GetMapping("/test")
-    public String test() {
-        Long a=System.currentTimeMillis();
-        System.out.println("time= "+a);
-        return "小juju 520 0_0 ";
+    public void test(HttpServletResponse response, HttpServletRequest request) throws IOException {
+
+
     }
 
 

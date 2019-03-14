@@ -3,6 +3,8 @@ package com.jin;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * @author jinpeng
@@ -11,7 +13,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties
-//@PropertySource(value = "classpath:config/${spring.profiles.active}/application.properties")
+@ComponentScan(value = {"com.jin"})
+@PropertySource(value = {"classpath:application-${spring.profiles.active}.properties"})
 public class EcsApplication {
 
     public static void main(String[] args) {
