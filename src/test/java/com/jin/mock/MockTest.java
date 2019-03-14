@@ -60,7 +60,7 @@ public class MockTest {
     public void test() throws Exception {
 
         TUser user=new TUser();
-        user.setMobile("18716883972");
+        user.setMobile("aaaaa");
         System.out.println(JSON.toJSONString(userService.queryList(user)));
     }
 
