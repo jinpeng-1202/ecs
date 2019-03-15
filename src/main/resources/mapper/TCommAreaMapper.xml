@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.dao.TCommAreaDao">  
+	<sql id="select_column_list">
+		level_type as levelType,city_code as cityCode,lng as lng,pinyin as pinyin,zip_code as zipCode,id as id,short_name as shortName,merger_name as mergerName,lat as lat,name as name,parent_id as parentId
+	</sql>
+	<sql id="insertcolumn_list">
+		level_type,city_code,lng,pinyin,zip_code,id,short_name,merger_name,lat,name,parent_id
+	</sql>
+	<sql id="where_condition">
+		<if test="levelType != null"> AND  level_type = #{levelType}  </if>
+ 		<if test="cityCode != null"> AND  city_code = #{cityCode}  </if>
+ 		<if test="lng != null"> AND  lng = #{lng}  </if>
+ 		<if test="pinyin != null"> AND  pinyin = #{pinyin}  </if>
+ 		<if test="zipCode != null"> AND  zip_code = #{zipCode}  </if>
+ 		<if test="id != null"> AND  id = #{id}  </if>
+ 		<if test="shortName != null"> AND  short_name = #{shortName}  </if>
+ 		<if test="mergerName != null"> AND  merger_name = #{mergerName}  </if>
+ 		<if test="lat != null"> AND  lat = #{lat}  </if>
+ 		<if test="name != null"> AND  name = #{name}  </if>
+ 		<if test="parentId != null"> AND  parent_id = #{parentId}  </if>
+ 	</sql>
+
+	<sql id="set_condition">
+		<if test="levelType != null">  level_type = #{levelType}, </if>
+ 		<if test="cityCode != null">  city_code = #{cityCode}, </if>
+ 		<if test="lng != null">  lng = #{lng}, </if>
+ 		<if test="pinyin != null">  pinyin = #{pinyin}, </if>
+ 		<if test="zipCode != null">  zip_code = #{zipCode}, </if>
+ 		<if test="id != null">  id = #{id}, </if>
+ 		<if test="shortName != null">  short_name = #{shortName}, </if>
+ 		<if test="mergerName != null">  merger_name = #{mergerName}, </if>
+ 		<if test="lat != null">  lat = #{lat}, </if>
+ 		<if test="name != null">  name = #{name}, </if>
+ 		<if test="parentId != null">  parent_id = #{parentId}, </if>
+ 	</sql>
+
+
+	<insert id="insert" parameterType="com.jin.model.TCommArea"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
+		 insert into t_comm_area		(<include refid="insertcolumn_list" />)		values 
+		(		 #{levelType},#{cityCode},#{lng},#{pinyin},#{zipCode},#{id},#{shortName},#{mergerName},#{lat},#{name},#{parentId}) 
+	</insert> 
+
+	<insert id="insertBatch" parameterType="ArrayList"> 
+		 insert into t_comm_area		(<include refid="insertcolumn_list" />)		 values 
+		 <foreach collection="list" item="obj"  index="index" separator="," >  
+			(		 #{obj.levelType},#{obj.cityCode},#{obj.lng},#{obj.pinyin},#{obj.zipCode},#{obj.id},#{obj.shortName},#{obj.mergerName},#{obj.lat},#{obj.name},#{obj.parentId}) 
+ 		</foreach>  
+	</insert> 
+
+	 <update id="update" parameterType="com.jin.model.TCommArea"> 
+		 update   t_comm_area  
+		 <set> 
+			 <include refid="set_condition" />  
+		</set>  
+		 where id=#{id}
+	</update> 
+	 <delete id="delete" parameterType="java.lang.Long">
+		delete from t_comm_area where id = #{id}
+	 </delete>
+
+		<select id="getObjectById"  parameterType="java.lang.Long" resultType="com.jin.model.TCommArea"> 
+       select 	 	 <include refid="select_column_list" /> 
+		 from t_comm_area a   WHERE id = #{id}
+ 	 </select> 
+ 	  <select id="getList" parameterType="com.jin.model.TCommArea" resultType="com.jin.model.TCommArea">
+ 	 	 select  <include refid="select_column_list" /> 
+		 from  t_comm_area a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		 <if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+	</select> 
+
+	<select id="getListForPageCount"  parameterType="java.util.HashMap" resultType="java.lang.Long"> 
+     select count(1) as value from t_comm_area a 
+ 		 <where>
+			  <include refid="where_condition" />
+		 </where>
+	 </select> 
+ 
+	 <select id="getListForPage" parameterType="java.util.HashMap" resultType="com.jin.model.TCommArea">
+		  select <include refid="select_column_list" />  
+		  from t_comm_area a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		<if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+		 LIMIT   #{startRow},  #{endRow} 
+ 	 </select>
+
+<!--*********************************以下可以写自定义的语句*****************************-->
+
+</mapper>

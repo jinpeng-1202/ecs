@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.dao.TSysUserDao">  
+	<sql id="select_column_list">
+		password as password,account_non_expired as accountNonExpired,account_non_locked as accountNonLocked,create_time as createTime,credentials_non_expired as credentialsNonExpired,id as id,enabled as enabled,username as username
+	</sql>
+	<sql id="insertcolumn_list">
+		password,account_non_expired,account_non_locked,create_time,credentials_non_expired,id,enabled,username
+	</sql>
+	<sql id="where_condition">
+		<if test="password != null"> AND  password = #{password}  </if>
+ 		<if test="accountNonExpired != null"> AND  account_non_expired = #{accountNonExpired}  </if>
+ 		<if test="accountNonLocked != null"> AND  account_non_locked = #{accountNonLocked}  </if>
+ 		<if test="createTime != null"> AND  create_time = #{createTime}  </if>
+ 		<if test="credentialsNonExpired != null"> AND  credentials_non_expired = #{credentialsNonExpired}  </if>
+ 		<if test="id != null"> AND  id = #{id}  </if>
+ 		<if test="enabled != null"> AND  enabled = #{enabled}  </if>
+ 		<if test="username != null"> AND  username = #{username}  </if>
+ 	</sql>
+
+	<sql id="set_condition">
+		<if test="password != null">  password = #{password}, </if>
+ 		<if test="accountNonExpired != null">  account_non_expired = #{accountNonExpired}, </if>
+ 		<if test="accountNonLocked != null">  account_non_locked = #{accountNonLocked}, </if>
+ 		<if test="createTime != null">  create_time = #{createTime}, </if>
+ 		<if test="credentialsNonExpired != null">  credentials_non_expired = #{credentialsNonExpired}, </if>
+ 		<if test="id != null">  id = #{id}, </if>
+ 		<if test="enabled != null">  enabled = #{enabled}, </if>
+ 		<if test="username != null">  username = #{username}, </if>
+ 	</sql>
+
+
+	<insert id="insert" parameterType="com.jin.model.TSysUser"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
+		 insert into t_sys_user		(<include refid="insertcolumn_list" />)		values 
+		(		 #{password},#{accountNonExpired},#{accountNonLocked},#{createTime},#{credentialsNonExpired},#{id},#{enabled},#{username}) 
+	</insert> 
+
+	<insert id="insertBatch" parameterType="ArrayList"> 
+		 insert into t_sys_user		(<include refid="insertcolumn_list" />)		 values 
+		 <foreach collection="list" item="obj"  index="index" separator="," >  
+			(		 #{obj.password},#{obj.accountNonExpired},#{obj.accountNonLocked},#{obj.createTime},#{obj.credentialsNonExpired},#{obj.id},#{obj.enabled},#{obj.username}) 
+ 		</foreach>  
+	</insert> 
+
+	 <update id="update" parameterType="com.jin.model.TSysUser"> 
+		 update   t_sys_user  
+		 <set> 
+			 <include refid="set_condition" />  
+		</set>  
+		 where id=#{id}
+	</update> 
+	 <delete id="delete" parameterType="java.lang.Long">
+		delete from t_sys_user where id = #{id}
+	 </delete>
+
+		<select id="getObjectById"  parameterType="java.lang.Long" resultType="com.jin.model.TSysUser"> 
+       select 	 	 <include refid="select_column_list" /> 
+		 from t_sys_user a   WHERE id = #{id}
+ 	 </select> 
+ 	  <select id="getList" parameterType="com.jin.model.TSysUser" resultType="com.jin.model.TSysUser">
+ 	 	 select  <include refid="select_column_list" /> 
+		 from  t_sys_user a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		 <if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+	</select> 
+
+	<select id="getListForPageCount"  parameterType="java.util.HashMap" resultType="java.lang.Long"> 
+     select count(1) as value from t_sys_user a 
+ 		 <where>
+			  <include refid="where_condition" />
+		 </where>
+	 </select> 
+ 
+	 <select id="getListForPage" parameterType="java.util.HashMap" resultType="com.jin.model.TSysUser">
+		  select <include refid="select_column_list" />  
+		  from t_sys_user a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		<if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+		 LIMIT   #{startRow},  #{endRow} 
+ 	 </select>
+
+<!--*********************************以下可以写自定义的语句*****************************-->
+
+</mapper>

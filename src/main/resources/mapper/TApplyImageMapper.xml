@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.dao.TApplyImageDao">  
+	<sql id="select_column_list">
+		supplement_img as supplementImg,create_time as createTime,upload as upload,image_url as imageUrl,description as description,valid as valid,update_time as updateTime,download as download,user_id as userId,out_image_url as outImageUrl,apply_id as applyId,id as id,supplement_status as supplementStatus,oss_image_url as ossImageUrl,image_type as imageType
+	</sql>
+	<sql id="insertcolumn_list">
+		supplement_img,create_time,upload,image_url,description,valid,update_time,download,user_id,out_image_url,apply_id,id,supplement_status,oss_image_url,image_type
+	</sql>
+	<sql id="where_condition">
+		<if test="supplementImg != null"> AND  supplement_img = #{supplementImg}  </if>
+ 		<if test="createTime != null"> AND  create_time = #{createTime}  </if>
+ 		<if test="upload != null"> AND  upload = #{upload}  </if>
+ 		<if test="imageUrl != null"> AND  image_url = #{imageUrl}  </if>
+ 		<if test="description != null"> AND  description = #{description}  </if>
+ 		<if test="valid != null"> AND  valid = #{valid}  </if>
+ 		<if test="updateTime != null"> AND  update_time = #{updateTime}  </if>
+ 		<if test="download != null"> AND  download = #{download}  </if>
+ 		<if test="userId != null"> AND  user_id = #{userId}  </if>
+ 		<if test="outImageUrl != null"> AND  out_image_url = #{outImageUrl}  </if>
+ 		<if test="applyId != null"> AND  apply_id = #{applyId}  </if>
+ 		<if test="id != null"> AND  id = #{id}  </if>
+ 		<if test="supplementStatus != null"> AND  supplement_status = #{supplementStatus}  </if>
+ 		<if test="ossImageUrl != null"> AND  oss_image_url = #{ossImageUrl}  </if>
+ 		<if test="imageType != null"> AND  image_type = #{imageType}  </if>
+ 	</sql>
+
+	<sql id="set_condition">
+		<if test="supplementImg != null">  supplement_img = #{supplementImg}, </if>
+ 		<if test="createTime != null">  create_time = #{createTime}, </if>
+ 		<if test="upload != null">  upload = #{upload}, </if>
+ 		<if test="imageUrl != null">  image_url = #{imageUrl}, </if>
+ 		<if test="description != null">  description = #{description}, </if>
+ 		<if test="valid != null">  valid = #{valid}, </if>
+ 		<if test="updateTime != null">  update_time = #{updateTime}, </if>
+ 		<if test="download != null">  download = #{download}, </if>
+ 		<if test="userId != null">  user_id = #{userId}, </if>
+ 		<if test="outImageUrl != null">  out_image_url = #{outImageUrl}, </if>
+ 		<if test="applyId != null">  apply_id = #{applyId}, </if>
+ 		<if test="id != null">  id = #{id}, </if>
+ 		<if test="supplementStatus != null">  supplement_status = #{supplementStatus}, </if>
+ 		<if test="ossImageUrl != null">  oss_image_url = #{ossImageUrl}, </if>
+ 		<if test="imageType != null">  image_type = #{imageType}, </if>
+ 	</sql>
+
+
+	<insert id="insert" parameterType="com.jin.model.TApplyImage"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
+		 insert into t_apply_image		(<include refid="insertcolumn_list" />)		values 
+		(		 #{supplementImg},#{createTime},#{upload},#{imageUrl},#{description},#{valid},#{updateTime},#{download},#{userId},#{outImageUrl},#{applyId},#{id},#{supplementStatus},#{ossImageUrl},#{imageType}) 
+	</insert> 
+
+	<insert id="insertBatch" parameterType="ArrayList"> 
+		 insert into t_apply_image		(<include refid="insertcolumn_list" />)		 values 
+		 <foreach collection="list" item="obj"  index="index" separator="," >  
+			(		 #{obj.supplementImg},#{obj.createTime},#{obj.upload},#{obj.imageUrl},#{obj.description},#{obj.valid},#{obj.updateTime},#{obj.download},#{obj.userId},#{obj.outImageUrl},#{obj.applyId},#{obj.id},#{obj.supplementStatus},#{obj.ossImageUrl},#{obj.imageType}) 
+ 		</foreach>  
+	</insert> 
+
+	 <update id="update" parameterType="com.jin.model.TApplyImage"> 
+		 update   t_apply_image  
+		 <set> 
+			 <include refid="set_condition" />  
+		</set>  
+		 where id=#{id}
+	</update> 
+	 <delete id="delete" parameterType="java.lang.Long">
+		delete from t_apply_image where id = #{id}
+	 </delete>
+
+		<select id="getObjectById"  parameterType="java.lang.Long" resultType="com.jin.model.TApplyImage"> 
+       select 	 	 <include refid="select_column_list" /> 
+		 from t_apply_image a   WHERE id = #{id}
+ 	 </select> 
+ 	  <select id="getList" parameterType="com.jin.model.TApplyImage" resultType="com.jin.model.TApplyImage">
+ 	 	 select  <include refid="select_column_list" /> 
+		 from  t_apply_image a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		 <if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+	</select> 
+
+	<select id="getListForPageCount"  parameterType="java.util.HashMap" resultType="java.lang.Long"> 
+     select count(1) as value from t_apply_image a 
+ 		 <where>
+			  <include refid="where_condition" />
+		 </where>
+	 </select> 
+ 
+	 <select id="getListForPage" parameterType="java.util.HashMap" resultType="com.jin.model.TApplyImage">
+		  select <include refid="select_column_list" />  
+		  from t_apply_image a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		<if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+		 LIMIT   #{startRow},  #{endRow} 
+ 	 </select>
+
+<!--*********************************以下可以写自定义的语句*****************************-->
+
+</mapper>

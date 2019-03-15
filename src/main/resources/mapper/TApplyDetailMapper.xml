@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.dao.TApplyDetailDao">  
+	<sql id="select_column_list">
+		comp_addr_code as compAddrCode,estate_desc as estateDesc,comp_addr as compAddr,work_desc as workDesc,face_score as faceScore,degree_desc as degreeDesc,marital_info as maritalInfo,comp_name as compName,resever_first as reseverFirst,payee_city as payeeCity,customer_rate as customerRate,comp_phone as compPhone,resever_two as reseverTwo,id as id,work_status as workStatus,address_update_time as addressUpdateTime,estate_code as estateCode,create_time as createTime,payee_province as payeeProvince,apply_item as applyItem,income_source as incomeSource,work_type as workType,working_years as workingYears,data_verification as dataVerification,ex_face_info as exFaceInfo,work_earnings as workEarnings,comp_type_desc as compTypeDesc,address_list as addressList,user_id as userId,comp_code as compCode,degree_code as degreeCode,call_log_url as callLogUrl,addr_code as addrCode,address_url as addressUrl,work_dept as workDept,marital_code as maritalCode,career_code as careerCode,update_time as updateTime,comp_type_code as compTypeCode,payee_cnaps_no as payeeCnapsNo,apply_id as applyId,work_url as workUrl,email as email,operator_url as operatorUrl,resever_three as reseverThree,phonebook as phonebook,comp_desc as compDesc,school_name as schoolName,addr_detail as addrDetail,address_flag as addressFlag,career_desc as careerDesc,marital_desc as maritalDesc,month_income as monthIncome,admission_time as admissionTime,merchant_rate as merchantRate,payee_cnaps_name as payeeCnapsName,skip_flag as skipFlag
+	</sql>
+	<sql id="insertcolumn_list">
+		comp_addr_code,estate_desc,comp_addr,work_desc,face_score,degree_desc,marital_info,comp_name,resever_first,payee_city,customer_rate,comp_phone,resever_two,id,work_status,address_update_time,estate_code,create_time,payee_province,apply_item,income_source,work_type,working_years,data_verification,ex_face_info,work_earnings,comp_type_desc,address_list,user_id,comp_code,degree_code,call_log_url,addr_code,address_url,work_dept,marital_code,career_code,update_time,comp_type_code,payee_cnaps_no,apply_id,work_url,email,operator_url,resever_three,phonebook,comp_desc,school_name,addr_detail,address_flag,career_desc,marital_desc,month_income,admission_time,merchant_rate,payee_cnaps_name,skip_flag
+	</sql>
+	<sql id="where_condition">
+		<if test="compAddrCode != null"> AND  comp_addr_code = #{compAddrCode}  </if>
+ 		<if test="estateDesc != null"> AND  estate_desc = #{estateDesc}  </if>
+ 		<if test="compAddr != null"> AND  comp_addr = #{compAddr}  </if>
+ 		<if test="workDesc != null"> AND  work_desc = #{workDesc}  </if>
+ 		<if test="faceScore != null"> AND  face_score = #{faceScore}  </if>
+ 		<if test="degreeDesc != null"> AND  degree_desc = #{degreeDesc}  </if>
+ 		<if test="maritalInfo != null"> AND  marital_info = #{maritalInfo}  </if>
+ 		<if test="compName != null"> AND  comp_name = #{compName}  </if>
+ 		<if test="reseverFirst != null"> AND  resever_first = #{reseverFirst}  </if>
+ 		<if test="payeeCity != null"> AND  payee_city = #{payeeCity}  </if>
+ 		<if test="customerRate != null"> AND  customer_rate = #{customerRate}  </if>
+ 		<if test="compPhone != null"> AND  comp_phone = #{compPhone}  </if>
+ 		<if test="reseverTwo != null"> AND  resever_two = #{reseverTwo}  </if>
+ 		<if test="id != null"> AND  id = #{id}  </if>
+ 		<if test="workStatus != null"> AND  work_status = #{workStatus}  </if>
+ 		<if test="addressUpdateTime != null"> AND  address_update_time = #{addressUpdateTime}  </if>
+ 		<if test="estateCode != null"> AND  estate_code = #{estateCode}  </if>
+ 		<if test="createTime != null"> AND  create_time = #{createTime}  </if>
+ 		<if test="payeeProvince != null"> AND  payee_province = #{payeeProvince}  </if>
+ 		<if test="applyItem != null"> AND  apply_item = #{applyItem}  </if>
+ 		<if test="incomeSource != null"> AND  income_source = #{incomeSource}  </if>
+ 		<if test="workType != null"> AND  work_type = #{workType}  </if>
+ 		<if test="workingYears != null"> AND  working_years = #{workingYears}  </if>
+ 		<if test="dataVerification != null"> AND  data_verification = #{dataVerification}  </if>
+ 		<if test="exFaceInfo != null"> AND  ex_face_info = #{exFaceInfo}  </if>
+ 		<if test="workEarnings != null"> AND  work_earnings = #{workEarnings}  </if>
+ 		<if test="compTypeDesc != null"> AND  comp_type_desc = #{compTypeDesc}  </if>
+ 		<if test="addressList != null"> AND  address_list = #{addressList}  </if>
+ 		<if test="userId != null"> AND  user_id = #{userId}  </if>
+ 		<if test="compCode != null"> AND  comp_code = #{compCode}  </if>
+ 		<if test="degreeCode != null"> AND  degree_code = #{degreeCode}  </if>
+ 		<if test="callLogUrl != null"> AND  call_log_url = #{callLogUrl}  </if>
+ 		<if test="addrCode != null"> AND  addr_code = #{addrCode}  </if>
+ 		<if test="addressUrl != null"> AND  address_url = #{addressUrl}  </if>
+ 		<if test="workDept != null"> AND  work_dept = #{workDept}  </if>
+ 		<if test="maritalCode != null"> AND  marital_code = #{maritalCode}  </if>
+ 		<if test="careerCode != null"> AND  career_code = #{careerCode}  </if>
+ 		<if test="updateTime != null"> AND  update_time = #{updateTime}  </if>
+ 		<if test="compTypeCode != null"> AND  comp_type_code = #{compTypeCode}  </if>
+ 		<if test="payeeCnapsNo != null"> AND  payee_cnaps_no = #{payeeCnapsNo}  </if>
+ 		<if test="applyId != null"> AND  apply_id = #{applyId}  </if>
+ 		<if test="workUrl != null"> AND  work_url = #{workUrl}  </if>
+ 		<if test="email != null"> AND  email = #{email}  </if>
+ 		<if test="operatorUrl != null"> AND  operator_url = #{operatorUrl}  </if>
+ 		<if test="reseverThree != null"> AND  resever_three = #{reseverThree}  </if>
+ 		<if test="phonebook != null"> AND  phonebook = #{phonebook}  </if>
+ 		<if test="compDesc != null"> AND  comp_desc = #{compDesc}  </if>
+ 		<if test="schoolName != null"> AND  school_name = #{schoolName}  </if>
+ 		<if test="addrDetail != null"> AND  addr_detail = #{addrDetail}  </if>
+ 		<if test="addressFlag != null"> AND  address_flag = #{addressFlag}  </if>
+ 		<if test="careerDesc != null"> AND  career_desc = #{careerDesc}  </if>
+ 		<if test="maritalDesc != null"> AND  marital_desc = #{maritalDesc}  </if>
+ 		<if test="monthIncome != null"> AND  month_income = #{monthIncome}  </if>
+ 		<if test="admissionTime != null"> AND  admission_time = #{admissionTime}  </if>
+ 		<if test="merchantRate != null"> AND  merchant_rate = #{merchantRate}  </if>
+ 		<if test="payeeCnapsName != null"> AND  payee_cnaps_name = #{payeeCnapsName}  </if>
+ 		<if test="skipFlag != null"> AND  skip_flag = #{skipFlag}  </if>
+ 	</sql>
+
+	<sql id="set_condition">
+		<if test="compAddrCode != null">  comp_addr_code = #{compAddrCode}, </if>
+ 		<if test="estateDesc != null">  estate_desc = #{estateDesc}, </if>
+ 		<if test="compAddr != null">  comp_addr = #{compAddr}, </if>
+ 		<if test="workDesc != null">  work_desc = #{workDesc}, </if>
+ 		<if test="faceScore != null">  face_score = #{faceScore}, </if>
+ 		<if test="degreeDesc != null">  degree_desc = #{degreeDesc}, </if>
+ 		<if test="maritalInfo != null">  marital_info = #{maritalInfo}, </if>
+ 		<if test="compName != null">  comp_name = #{compName}, </if>
+ 		<if test="reseverFirst != null">  resever_first = #{reseverFirst}, </if>
+ 		<if test="payeeCity != null">  payee_city = #{payeeCity}, </if>
+ 		<if test="customerRate != null">  customer_rate = #{customerRate}, </if>
+ 		<if test="compPhone != null">  comp_phone = #{compPhone}, </if>
+ 		<if test="reseverTwo != null">  resever_two = #{reseverTwo}, </if>
+ 		<if test="id != null">  id = #{id}, </if>
+ 		<if test="workStatus != null">  work_status = #{workStatus}, </if>
+ 		<if test="addressUpdateTime != null">  address_update_time = #{addressUpdateTime}, </if>
+ 		<if test="estateCode != null">  estate_code = #{estateCode}, </if>
+ 		<if test="createTime != null">  create_time = #{createTime}, </if>
+ 		<if test="payeeProvince != null">  payee_province = #{payeeProvince}, </if>
+ 		<if test="applyItem != null">  apply_item = #{applyItem}, </if>
+ 		<if test="incomeSource != null">  income_source = #{incomeSource}, </if>
+ 		<if test="workType != null">  work_type = #{workType}, </if>
+ 		<if test="workingYears != null">  working_years = #{workingYears}, </if>
+ 		<if test="dataVerification != null">  data_verification = #{dataVerification}, </if>
+ 		<if test="exFaceInfo != null">  ex_face_info = #{exFaceInfo}, </if>
+ 		<if test="workEarnings != null">  work_earnings = #{workEarnings}, </if>
+ 		<if test="compTypeDesc != null">  comp_type_desc = #{compTypeDesc}, </if>
+ 		<if test="addressList != null">  address_list = #{addressList}, </if>
+ 		<if test="userId != null">  user_id = #{userId}, </if>
+ 		<if test="compCode != null">  comp_code = #{compCode}, </if>
+ 		<if test="degreeCode != null">  degree_code = #{degreeCode}, </if>
+ 		<if test="callLogUrl != null">  call_log_url = #{callLogUrl}, </if>
+ 		<if test="addrCode != null">  addr_code = #{addrCode}, </if>
+ 		<if test="addressUrl != null">  address_url = #{addressUrl}, </if>
+ 		<if test="workDept != null">  work_dept = #{workDept}, </if>
+ 		<if test="maritalCode != null">  marital_code = #{maritalCode}, </if>
+ 		<if test="careerCode != null">  career_code = #{careerCode}, </if>
+ 		<if test="updateTime != null">  update_time = #{updateTime}, </if>
+ 		<if test="compTypeCode != null">  comp_type_code = #{compTypeCode}, </if>
+ 		<if test="payeeCnapsNo != null">  payee_cnaps_no = #{payeeCnapsNo}, </if>
+ 		<if test="applyId != null">  apply_id = #{applyId}, </if>
+ 		<if test="workUrl != null">  work_url = #{workUrl}, </if>
+ 		<if test="email != null">  email = #{email}, </if>
+ 		<if test="operatorUrl != null">  operator_url = #{operatorUrl}, </if>
+ 		<if test="reseverThree != null">  resever_three = #{reseverThree}, </if>
+ 		<if test="phonebook != null">  phonebook = #{phonebook}, </if>
+ 		<if test="compDesc != null">  comp_desc = #{compDesc}, </if>
+ 		<if test="schoolName != null">  school_name = #{schoolName}, </if>
+ 		<if test="addrDetail != null">  addr_detail = #{addrDetail}, </if>
+ 		<if test="addressFlag != null">  address_flag = #{addressFlag}, </if>
+ 		<if test="careerDesc != null">  career_desc = #{careerDesc}, </if>
+ 		<if test="maritalDesc != null">  marital_desc = #{maritalDesc}, </if>
+ 		<if test="monthIncome != null">  month_income = #{monthIncome}, </if>
+ 		<if test="admissionTime != null">  admission_time = #{admissionTime}, </if>
+ 		<if test="merchantRate != null">  merchant_rate = #{merchantRate}, </if>
+ 		<if test="payeeCnapsName != null">  payee_cnaps_name = #{payeeCnapsName}, </if>
+ 		<if test="skipFlag != null">  skip_flag = #{skipFlag}, </if>
+ 	</sql>
+
+
+	<insert id="insert" parameterType="com.jin.model.TApplyDetail"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
+		 insert into t_apply_detail		(<include refid="insertcolumn_list" />)		values 
+		(		 #{compAddrCode},#{estateDesc},#{compAddr},#{workDesc},#{faceScore},#{degreeDesc},#{maritalInfo},#{compName},#{reseverFirst},#{payeeCity},#{customerRate},#{compPhone},#{reseverTwo},#{id},#{workStatus},#{addressUpdateTime},#{estateCode},#{createTime},#{payeeProvince},#{applyItem},#{incomeSource},#{workType},#{workingYears},#{dataVerification},#{exFaceInfo},#{workEarnings},#{compTypeDesc},#{addressList},#{userId},#{compCode},#{degreeCode},#{callLogUrl},#{addrCode},#{addressUrl},#{workDept},#{maritalCode},#{careerCode},#{updateTime},#{compTypeCode},#{payeeCnapsNo},#{applyId},#{workUrl},#{email},#{operatorUrl},#{reseverThree},#{phonebook},#{compDesc},#{schoolName},#{addrDetail},#{addressFlag},#{careerDesc},#{maritalDesc},#{monthIncome},#{admissionTime},#{merchantRate},#{payeeCnapsName},#{skipFlag}) 
+	</insert> 
+
+	<insert id="insertBatch" parameterType="ArrayList"> 
+		 insert into t_apply_detail		(<include refid="insertcolumn_list" />)		 values 
+		 <foreach collection="list" item="obj"  index="index" separator="," >  
+			(		 #{obj.compAddrCode},#{obj.estateDesc},#{obj.compAddr},#{obj.workDesc},#{obj.faceScore},#{obj.degreeDesc},#{obj.maritalInfo},#{obj.compName},#{obj.reseverFirst},#{obj.payeeCity},#{obj.customerRate},#{obj.compPhone},#{obj.reseverTwo},#{obj.id},#{obj.workStatus},#{obj.addressUpdateTime},#{obj.estateCode},#{obj.createTime},#{obj.payeeProvince},#{obj.applyItem},#{obj.incomeSource},#{obj.workType},#{obj.workingYears},#{obj.dataVerification},#{obj.exFaceInfo},#{obj.workEarnings},#{obj.compTypeDesc},#{obj.addressList},#{obj.userId},#{obj.compCode},#{obj.degreeCode},#{obj.callLogUrl},#{obj.addrCode},#{obj.addressUrl},#{obj.workDept},#{obj.maritalCode},#{obj.careerCode},#{obj.updateTime},#{obj.compTypeCode},#{obj.payeeCnapsNo},#{obj.applyId},#{obj.workUrl},#{obj.email},#{obj.operatorUrl},#{obj.reseverThree},#{obj.phonebook},#{obj.compDesc},#{obj.schoolName},#{obj.addrDetail},#{obj.addressFlag},#{obj.careerDesc},#{obj.maritalDesc},#{obj.monthIncome},#{obj.admissionTime},#{obj.merchantRate},#{obj.payeeCnapsName},#{obj.skipFlag}) 
+ 		</foreach>  
+	</insert> 
+
+	 <update id="update" parameterType="com.jin.model.TApplyDetail"> 
+		 update   t_apply_detail  
+		 <set> 
+			 <include refid="set_condition" />  
+		</set>  
+		 where id=#{id}
+	</update> 
+	 <delete id="delete" parameterType="java.lang.Long">
+		delete from t_apply_detail where id = #{id}
+	 </delete>
+
+		<select id="getObjectById"  parameterType="java.lang.Long" resultType="com.jin.model.TApplyDetail"> 
+       select 	 	 <include refid="select_column_list" /> 
+		 from t_apply_detail a   WHERE id = #{id}
+ 	 </select> 
+ 	  <select id="getList" parameterType="com.jin.model.TApplyDetail" resultType="com.jin.model.TApplyDetail">
+ 	 	 select  <include refid="select_column_list" /> 
+		 from  t_apply_detail a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		 <if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+	</select> 
+
+	<select id="getListForPageCount"  parameterType="java.util.HashMap" resultType="java.lang.Long"> 
+     select count(1) as value from t_apply_detail a 
+ 		 <where>
+			  <include refid="where_condition" />
+		 </where>
+	 </select> 
+ 
+	 <select id="getListForPage" parameterType="java.util.HashMap" resultType="com.jin.model.TApplyDetail">
+		  select <include refid="select_column_list" />  
+		  from t_apply_detail a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		<if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+		 LIMIT   #{startRow},  #{endRow} 
+ 	 </select>
+
+<!--*********************************以下可以写自定义的语句*****************************-->
+
+</mapper>

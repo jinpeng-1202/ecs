@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jin.dao.TApplyMsgDao">  
+	<sql id="select_column_list">
+		error_info as errorInfo,apply_day as applyDay,channel as channel,current_period as currentPeriod,credit_token as creditToken,request_number as requestNumber,mer_code as merCode,resever_first as reseverFirst,resever_two as reseverTwo,id as id,longitude as longitude,bank_account as bankAccount,qualification_audit_pass as qualificationAuditPass,ca_list as caList,create_time as createTime,bank_type as bankType,reject_msg as rejectMsg,biz_type as bizType,apply_time as applyTime,review_confirm_time as reviewConfirmTime,contract_numbers as contractNumbers,verify_code as verifyCode,is_select_project as isSelectProject,apply_period as applyPeriod,contract_url as contractUrl,platform_code as platformCode,month_repay_amount as monthRepayAmount,user_id as userId,advance_info as advanceInfo,pass_amount as passAmount,child_status as childStatus,asset_push_count as assetPushCount,temp_qrcode_mark as tempQrcodeMark,apply_amount as applyAmount,status as status,idcard_name as idcardName,face_bizid as faceBizid,asset_push_result as assetPushResult,supplement_info as supplementInfo,latitude as latitude,industry as industry,early_income_flag as earlyIncomeFlag,repayment_type as repaymentType,account_num as accountNum,update_time as updateTime,express_item as expressItem,fee_code as feeCode,proj_code as projCode,review_time as reviewTime,asset_sign as assetSign,loan_item as loanItem,idcard_no as idcardNo,loan_time as loanTime,resever_three as reseverThree,risk_user_memo as riskUserMemo,early_income_amount as earlyIncomeAmount,capital_code as capitalCode,hos_name as hosName,mobile as mobile,apply_channel as applyChannel,face_status as faceStatus,hos_code as hosCode,proj_name as projName,is_confirm_amt as isConfirmAmt,project_list as projectList,mer_name as merName,self_hold as selfHold
+	</sql>
+	<sql id="insertcolumn_list">
+		error_info,apply_day,channel,current_period,credit_token,request_number,mer_code,resever_first,resever_two,id,longitude,bank_account,qualification_audit_pass,ca_list,create_time,bank_type,reject_msg,biz_type,apply_time,review_confirm_time,contract_numbers,verify_code,is_select_project,apply_period,contract_url,platform_code,month_repay_amount,user_id,advance_info,pass_amount,child_status,asset_push_count,temp_qrcode_mark,apply_amount,status,idcard_name,face_bizid,asset_push_result,supplement_info,latitude,industry,early_income_flag,repayment_type,account_num,update_time,express_item,fee_code,proj_code,review_time,asset_sign,loan_item,idcard_no,loan_time,resever_three,risk_user_memo,early_income_amount,capital_code,hos_name,mobile,apply_channel,face_status,hos_code,proj_name,is_confirm_amt,project_list,mer_name,self_hold
+	</sql>
+	<sql id="where_condition">
+		<if test="errorInfo != null"> AND  error_info = #{errorInfo}  </if>
+ 		<if test="applyDay != null"> AND  apply_day = #{applyDay}  </if>
+ 		<if test="channel != null"> AND  channel = #{channel}  </if>
+ 		<if test="currentPeriod != null"> AND  current_period = #{currentPeriod}  </if>
+ 		<if test="creditToken != null"> AND  credit_token = #{creditToken}  </if>
+ 		<if test="requestNumber != null"> AND  request_number = #{requestNumber}  </if>
+ 		<if test="merCode != null"> AND  mer_code = #{merCode}  </if>
+ 		<if test="reseverFirst != null"> AND  resever_first = #{reseverFirst}  </if>
+ 		<if test="reseverTwo != null"> AND  resever_two = #{reseverTwo}  </if>
+ 		<if test="id != null"> AND  id = #{id}  </if>
+ 		<if test="longitude != null"> AND  longitude = #{longitude}  </if>
+ 		<if test="bankAccount != null"> AND  bank_account = #{bankAccount}  </if>
+ 		<if test="qualificationAuditPass != null"> AND  qualification_audit_pass = #{qualificationAuditPass}  </if>
+ 		<if test="caList != null"> AND  ca_list = #{caList}  </if>
+ 		<if test="createTime != null"> AND  create_time = #{createTime}  </if>
+ 		<if test="bankType != null"> AND  bank_type = #{bankType}  </if>
+ 		<if test="rejectMsg != null"> AND  reject_msg = #{rejectMsg}  </if>
+ 		<if test="bizType != null"> AND  biz_type = #{bizType}  </if>
+ 		<if test="applyTime != null"> AND  apply_time = #{applyTime}  </if>
+ 		<if test="reviewConfirmTime != null"> AND  review_confirm_time = #{reviewConfirmTime}  </if>
+ 		<if test="contractNumbers != null"> AND  contract_numbers = #{contractNumbers}  </if>
+ 		<if test="verifyCode != null"> AND  verify_code = #{verifyCode}  </if>
+ 		<if test="isSelectProject != null"> AND  is_select_project = #{isSelectProject}  </if>
+ 		<if test="applyPeriod != null"> AND  apply_period = #{applyPeriod}  </if>
+ 		<if test="contractUrl != null"> AND  contract_url = #{contractUrl}  </if>
+ 		<if test="platformCode != null"> AND  platform_code = #{platformCode}  </if>
+ 		<if test="monthRepayAmount != null"> AND  month_repay_amount = #{monthRepayAmount}  </if>
+ 		<if test="userId != null"> AND  user_id = #{userId}  </if>
+ 		<if test="advanceInfo != null"> AND  advance_info = #{advanceInfo}  </if>
+ 		<if test="passAmount != null"> AND  pass_amount = #{passAmount}  </if>
+ 		<if test="childStatus != null"> AND  child_status = #{childStatus}  </if>
+ 		<if test="assetPushCount != null"> AND  asset_push_count = #{assetPushCount}  </if>
+ 		<if test="tempQrcodeMark != null"> AND  temp_qrcode_mark = #{tempQrcodeMark}  </if>
+ 		<if test="applyAmount != null"> AND  apply_amount = #{applyAmount}  </if>
+ 		<if test="status != null"> AND  status = #{status}  </if>
+ 		<if test="idcardName != null"> AND  idcard_name = #{idcardName}  </if>
+ 		<if test="faceBizid != null"> AND  face_bizid = #{faceBizid}  </if>
+ 		<if test="assetPushResult != null"> AND  asset_push_result = #{assetPushResult}  </if>
+ 		<if test="supplementInfo != null"> AND  supplement_info = #{supplementInfo}  </if>
+ 		<if test="latitude != null"> AND  latitude = #{latitude}  </if>
+ 		<if test="industry != null"> AND  industry = #{industry}  </if>
+ 		<if test="earlyIncomeFlag != null"> AND  early_income_flag = #{earlyIncomeFlag}  </if>
+ 		<if test="repaymentType != null"> AND  repayment_type = #{repaymentType}  </if>
+ 		<if test="accountNum != null"> AND  account_num = #{accountNum}  </if>
+ 		<if test="updateTime != null"> AND  update_time = #{updateTime}  </if>
+ 		<if test="expressItem != null"> AND  express_item = #{expressItem}  </if>
+ 		<if test="feeCode != null"> AND  fee_code = #{feeCode}  </if>
+ 		<if test="projCode != null"> AND  proj_code = #{projCode}  </if>
+ 		<if test="reviewTime != null"> AND  review_time = #{reviewTime}  </if>
+ 		<if test="assetSign != null"> AND  asset_sign = #{assetSign}  </if>
+ 		<if test="loanItem != null"> AND  loan_item = #{loanItem}  </if>
+ 		<if test="idcardNo != null"> AND  idcard_no = #{idcardNo}  </if>
+ 		<if test="loanTime != null"> AND  loan_time = #{loanTime}  </if>
+ 		<if test="reseverThree != null"> AND  resever_three = #{reseverThree}  </if>
+ 		<if test="riskUserMemo != null"> AND  risk_user_memo = #{riskUserMemo}  </if>
+ 		<if test="earlyIncomeAmount != null"> AND  early_income_amount = #{earlyIncomeAmount}  </if>
+ 		<if test="capitalCode != null"> AND  capital_code = #{capitalCode}  </if>
+ 		<if test="hosName != null"> AND  hos_name = #{hosName}  </if>
+ 		<if test="mobile != null"> AND  mobile = #{mobile}  </if>
+ 		<if test="applyChannel != null"> AND  apply_channel = #{applyChannel}  </if>
+ 		<if test="faceStatus != null"> AND  face_status = #{faceStatus}  </if>
+ 		<if test="hosCode != null"> AND  hos_code = #{hosCode}  </if>
+ 		<if test="projName != null"> AND  proj_name = #{projName}  </if>
+ 		<if test="isConfirmAmt != null"> AND  is_confirm_amt = #{isConfirmAmt}  </if>
+ 		<if test="projectList != null"> AND  project_list = #{projectList}  </if>
+ 		<if test="merName != null"> AND  mer_name = #{merName}  </if>
+ 		<if test="selfHold != null"> AND  self_hold = #{selfHold}  </if>
+ 	</sql>
+
+	<sql id="set_condition">
+		<if test="errorInfo != null">  error_info = #{errorInfo}, </if>
+ 		<if test="applyDay != null">  apply_day = #{applyDay}, </if>
+ 		<if test="channel != null">  channel = #{channel}, </if>
+ 		<if test="currentPeriod != null">  current_period = #{currentPeriod}, </if>
+ 		<if test="creditToken != null">  credit_token = #{creditToken}, </if>
+ 		<if test="requestNumber != null">  request_number = #{requestNumber}, </if>
+ 		<if test="merCode != null">  mer_code = #{merCode}, </if>
+ 		<if test="reseverFirst != null">  resever_first = #{reseverFirst}, </if>
+ 		<if test="reseverTwo != null">  resever_two = #{reseverTwo}, </if>
+ 		<if test="id != null">  id = #{id}, </if>
+ 		<if test="longitude != null">  longitude = #{longitude}, </if>
+ 		<if test="bankAccount != null">  bank_account = #{bankAccount}, </if>
+ 		<if test="qualificationAuditPass != null">  qualification_audit_pass = #{qualificationAuditPass}, </if>
+ 		<if test="caList != null">  ca_list = #{caList}, </if>
+ 		<if test="createTime != null">  create_time = #{createTime}, </if>
+ 		<if test="bankType != null">  bank_type = #{bankType}, </if>
+ 		<if test="rejectMsg != null">  reject_msg = #{rejectMsg}, </if>
+ 		<if test="bizType != null">  biz_type = #{bizType}, </if>
+ 		<if test="applyTime != null">  apply_time = #{applyTime}, </if>
+ 		<if test="reviewConfirmTime != null">  review_confirm_time = #{reviewConfirmTime}, </if>
+ 		<if test="contractNumbers != null">  contract_numbers = #{contractNumbers}, </if>
+ 		<if test="verifyCode != null">  verify_code = #{verifyCode}, </if>
+ 		<if test="isSelectProject != null">  is_select_project = #{isSelectProject}, </if>
+ 		<if test="applyPeriod != null">  apply_period = #{applyPeriod}, </if>
+ 		<if test="contractUrl != null">  contract_url = #{contractUrl}, </if>
+ 		<if test="platformCode != null">  platform_code = #{platformCode}, </if>
+ 		<if test="monthRepayAmount != null">  month_repay_amount = #{monthRepayAmount}, </if>
+ 		<if test="userId != null">  user_id = #{userId}, </if>
+ 		<if test="advanceInfo != null">  advance_info = #{advanceInfo}, </if>
+ 		<if test="passAmount != null">  pass_amount = #{passAmount}, </if>
+ 		<if test="childStatus != null">  child_status = #{childStatus}, </if>
+ 		<if test="assetPushCount != null">  asset_push_count = #{assetPushCount}, </if>
+ 		<if test="tempQrcodeMark != null">  temp_qrcode_mark = #{tempQrcodeMark}, </if>
+ 		<if test="applyAmount != null">  apply_amount = #{applyAmount}, </if>
+ 		<if test="status != null">  status = #{status}, </if>
+ 		<if test="idcardName != null">  idcard_name = #{idcardName}, </if>
+ 		<if test="faceBizid != null">  face_bizid = #{faceBizid}, </if>
+ 		<if test="assetPushResult != null">  asset_push_result = #{assetPushResult}, </if>
+ 		<if test="supplementInfo != null">  supplement_info = #{supplementInfo}, </if>
+ 		<if test="latitude != null">  latitude = #{latitude}, </if>
+ 		<if test="industry != null">  industry = #{industry}, </if>
+ 		<if test="earlyIncomeFlag != null">  early_income_flag = #{earlyIncomeFlag}, </if>
+ 		<if test="repaymentType != null">  repayment_type = #{repaymentType}, </if>
+ 		<if test="accountNum != null">  account_num = #{accountNum}, </if>
+ 		<if test="updateTime != null">  update_time = #{updateTime}, </if>
+ 		<if test="expressItem != null">  express_item = #{expressItem}, </if>
+ 		<if test="feeCode != null">  fee_code = #{feeCode}, </if>
+ 		<if test="projCode != null">  proj_code = #{projCode}, </if>
+ 		<if test="reviewTime != null">  review_time = #{reviewTime}, </if>
+ 		<if test="assetSign != null">  asset_sign = #{assetSign}, </if>
+ 		<if test="loanItem != null">  loan_item = #{loanItem}, </if>
+ 		<if test="idcardNo != null">  idcard_no = #{idcardNo}, </if>
+ 		<if test="loanTime != null">  loan_time = #{loanTime}, </if>
+ 		<if test="reseverThree != null">  resever_three = #{reseverThree}, </if>
+ 		<if test="riskUserMemo != null">  risk_user_memo = #{riskUserMemo}, </if>
+ 		<if test="earlyIncomeAmount != null">  early_income_amount = #{earlyIncomeAmount}, </if>
+ 		<if test="capitalCode != null">  capital_code = #{capitalCode}, </if>
+ 		<if test="hosName != null">  hos_name = #{hosName}, </if>
+ 		<if test="mobile != null">  mobile = #{mobile}, </if>
+ 		<if test="applyChannel != null">  apply_channel = #{applyChannel}, </if>
+ 		<if test="faceStatus != null">  face_status = #{faceStatus}, </if>
+ 		<if test="hosCode != null">  hos_code = #{hosCode}, </if>
+ 		<if test="projName != null">  proj_name = #{projName}, </if>
+ 		<if test="isConfirmAmt != null">  is_confirm_amt = #{isConfirmAmt}, </if>
+ 		<if test="projectList != null">  project_list = #{projectList}, </if>
+ 		<if test="merName != null">  mer_name = #{merName}, </if>
+ 		<if test="selfHold != null">  self_hold = #{selfHold}, </if>
+ 	</sql>
+
+
+	<insert id="insert" parameterType="com.jin.model.TApplyMsg"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
+		 insert into t_apply_msg		(<include refid="insertcolumn_list" />)		values 
+		(		 #{errorInfo},#{applyDay},#{channel},#{currentPeriod},#{creditToken},#{requestNumber},#{merCode},#{reseverFirst},#{reseverTwo},#{id},#{longitude},#{bankAccount},#{qualificationAuditPass},#{caList},#{createTime},#{bankType},#{rejectMsg},#{bizType},#{applyTime},#{reviewConfirmTime},#{contractNumbers},#{verifyCode},#{isSelectProject},#{applyPeriod},#{contractUrl},#{platformCode},#{monthRepayAmount},#{userId},#{advanceInfo},#{passAmount},#{childStatus},#{assetPushCount},#{tempQrcodeMark},#{applyAmount},#{status},#{idcardName},#{faceBizid},#{assetPushResult},#{supplementInfo},#{latitude},#{industry},#{earlyIncomeFlag},#{repaymentType},#{accountNum},#{updateTime},#{expressItem},#{feeCode},#{projCode},#{reviewTime},#{assetSign},#{loanItem},#{idcardNo},#{loanTime},#{reseverThree},#{riskUserMemo},#{earlyIncomeAmount},#{capitalCode},#{hosName},#{mobile},#{applyChannel},#{faceStatus},#{hosCode},#{projName},#{isConfirmAmt},#{projectList},#{merName},#{selfHold}) 
+	</insert> 
+
+	<insert id="insertBatch" parameterType="ArrayList"> 
+		 insert into t_apply_msg		(<include refid="insertcolumn_list" />)		 values 
+		 <foreach collection="list" item="obj"  index="index" separator="," >  
+			(		 #{obj.errorInfo},#{obj.applyDay},#{obj.channel},#{obj.currentPeriod},#{obj.creditToken},#{obj.requestNumber},#{obj.merCode},#{obj.reseverFirst},#{obj.reseverTwo},#{obj.id},#{obj.longitude},#{obj.bankAccount},#{obj.qualificationAuditPass},#{obj.caList},#{obj.createTime},#{obj.bankType},#{obj.rejectMsg},#{obj.bizType},#{obj.applyTime},#{obj.reviewConfirmTime},#{obj.contractNumbers},#{obj.verifyCode},#{obj.isSelectProject},#{obj.applyPeriod},#{obj.contractUrl},#{obj.platformCode},#{obj.monthRepayAmount},#{obj.userId},#{obj.advanceInfo},#{obj.passAmount},#{obj.childStatus},#{obj.assetPushCount},#{obj.tempQrcodeMark},#{obj.applyAmount},#{obj.status},#{obj.idcardName},#{obj.faceBizid},#{obj.assetPushResult},#{obj.supplementInfo},#{obj.latitude},#{obj.industry},#{obj.earlyIncomeFlag},#{obj.repaymentType},#{obj.accountNum},#{obj.updateTime},#{obj.expressItem},#{obj.feeCode},#{obj.projCode},#{obj.reviewTime},#{obj.assetSign},#{obj.loanItem},#{obj.idcardNo},#{obj.loanTime},#{obj.reseverThree},#{obj.riskUserMemo},#{obj.earlyIncomeAmount},#{obj.capitalCode},#{obj.hosName},#{obj.mobile},#{obj.applyChannel},#{obj.faceStatus},#{obj.hosCode},#{obj.projName},#{obj.isConfirmAmt},#{obj.projectList},#{obj.merName},#{obj.selfHold}) 
+ 		</foreach>  
+	</insert> 
+
+	 <update id="update" parameterType="com.jin.model.TApplyMsg"> 
+		 update   t_apply_msg  
+		 <set> 
+			 <include refid="set_condition" />  
+		</set>  
+		 where id=#{id}
+	</update> 
+	 <delete id="delete" parameterType="java.lang.Long">
+		delete from t_apply_msg where id = #{id}
+	 </delete>
+
+		<select id="getObjectById"  parameterType="java.lang.Long" resultType="com.jin.model.TApplyMsg"> 
+       select 	 	 <include refid="select_column_list" /> 
+		 from t_apply_msg a   WHERE id = #{id}
+ 	 </select> 
+ 	  <select id="getList" parameterType="com.jin.model.TApplyMsg" resultType="com.jin.model.TApplyMsg">
+ 	 	 select  <include refid="select_column_list" /> 
+		 from  t_apply_msg a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		 <if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+	</select> 
+
+	<select id="getListForPageCount"  parameterType="java.util.HashMap" resultType="java.lang.Long"> 
+     select count(1) as value from t_apply_msg a 
+ 		 <where>
+			  <include refid="where_condition" />
+		 </where>
+	 </select> 
+ 
+	 <select id="getListForPage" parameterType="java.util.HashMap" resultType="com.jin.model.TApplyMsg">
+		  select <include refid="select_column_list" />  
+		  from t_apply_msg a 
+		 <where>
+			  <include refid="where_condition" />
+		 </where>
+		<if test="orderSql != null">  ORDER BY ${orderSql}  </if> 
+		 LIMIT   #{startRow},  #{endRow} 
+ 	 </select>
+
+<!--*********************************以下可以写自定义的语句*****************************-->
+
+</mapper>
