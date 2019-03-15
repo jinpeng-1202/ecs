@@ -1,8 +1,8 @@
 package com.jin.mock;
 
 import com.alibaba.fastjson.JSON;
-import com.jin.model.TUser;
-import com.jin.service.TUserService;
+import com.jin.model.TSysUser;
+import com.jin.service.TSysUserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,7 @@ public class MockTest {
 
 
     @Autowired
-    private TUserService userService;
+    private TSysUserService userService;
 
     @Test
     public void getMXData() throws Exception {
@@ -59,9 +59,7 @@ public class MockTest {
     @Test
     public void test() throws Exception {
 
-        TUser user=new TUser();
-        user.setMobile("aaaaa");
-        System.out.println(JSON.toJSONString(userService.queryList(user)));
+        System.out.println(JSON.toJSONString(userService.queryList(new TSysUser())));
     }
 
 }

@@ -8,65 +8,65 @@ import java.util.Date;
 */
 public class TUser extends BaseModel {
     /** 主键ID  */ 
-    private Long  id ; 
+    private Long  id; 
     /** 手机号  */ 
-    private String  mobile ; 
+    private String  mobile; 
     /**  */ 
-    private String  outUserId ; 
+    private String  outUserId; 
     /**  */ 
-    private String  appMobile ; 
+    private String  appMobile; 
     /**  */ 
-    private String  appUserId ; 
+    private String  appUserId; 
     /** 微信令牌  */ 
-    private String  wechatNo ; 
+    private String  wechatNo; 
     /** 登录密码 8位以上，字母+数字，SHA-512保存,需要与登录名一起HASH */ 
-    private String  password ; 
+    private String  password; 
     /** 姓名  */ 
-    private String  realName ; 
+    private String  realName; 
     /** 身份证号  */ 
-    private String  idNo ; 
+    private String  idNo; 
     /** 推送ID  */ 
-    private String  pushId ; 
+    private String  pushId; 
     /** 设备类型 IOS:苹果手机 ADNROID:安卓手机  */ 
-    private String  appType ; 
+    private String  appType; 
     /** 设备版本  */ 
-    private String  deviceVersion ; 
+    private String  deviceVersion; 
     /** 设备操作系统  */ 
-    private String  operatingSystem ; 
+    private String  operatingSystem; 
     /** 注册渠道 android, ios,wechat */ 
-    private String  registerChannel ; 
+    private String  registerChannel; 
     /** 平台编码 */ 
-    private String  platformCode ; 
+    private String  platformCode; 
     /** 帐号状态 1正常 2 已锁定  */ 
-    private String  status ; 
+    private String  status; 
     /** 记录创建时间  */ 
-    private Date  createTime ; 
+    private Date  createTime; 
     /** 修改时间时间  */ 
-    private Date  updateTime ; 
+    private Date  updateTime; 
     /** 保留字段 */ 
-    private String  resever ; 
+    private String  resever; 
     /** 人脸识别校验时间 */ 
-    private String  faceTime ; 
+    private String  faceTime; 
     /** 颜玖的主页面url */ 
-    private String  backIndexUrl ; 
+    private String  backIndexUrl; 
     /** 颜玖商品页面url */ 
-    private String  backShopUrl ; 
+    private String  backShopUrl; 
     /** 推送乔融的openid */ 
-    private String  openId ; 
+    private String  openId; 
     /** 身份证有效期起止时间 */ 
-    private String  idcardStartDate ; 
+    private String  idcardStartDate; 
     /** 身份证有效期终止时间 */ 
-    private String  idcardEndDate ; 
+    private String  idcardEndDate; 
     /** 身份证签发机关 */ 
-    private String  issueAgency ; 
+    private String  issueAgency; 
     /**  */ 
-    private String  extMobile ; 
+    private String  extMobile; 
     /** 合同平台注册标识：true=已注册，false=未注册 */ 
-    private String  contractRegMark ; 
+    private String  contractRegMark; 
     /**  */ 
-    private String  idcardAddr ; 
+    private String  idcardAddr; 
     /** 乔融的多个out_user_id */ 
-    private String  extOutUserId ; 
+    private String  extOutUserId; 
 
     /** 主键ID  */ 
     public Long getId(){

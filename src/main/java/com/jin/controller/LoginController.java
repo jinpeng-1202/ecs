@@ -35,7 +35,7 @@ public class LoginController {
         BufferedImage image = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
         // 验证码图片的背景颜色
-        Color c = new Color(200, 200, 255);
+        Color c = new Color(255, 252, 117);
         g.setColor(c);
         // 图片的边框
         g.fillRect(0, 0, IMG_WIDTH, IMG_HEIGHT);
@@ -71,6 +71,8 @@ public class LoginController {
         }
         return res;
     }
+
+
 
     @PostMapping("/system/loadUserMenu")
     public ApiResponse loadUserMenu(HttpServletRequest request) throws Exception {

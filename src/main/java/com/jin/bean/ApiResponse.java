@@ -1,5 +1,7 @@
 package com.jin.bean;
 
+import com.jin.common.enums.ResCode;
+
 import java.io.Serializable;
 
 /**
@@ -17,10 +19,14 @@ public class ApiResponse implements Serializable {
     private Object data;
 
     public ApiResponse() {
-        this.code = 200;
-        this.message = "success";
+        this.code = ResCode.SUCCESS.getCode();
+        this.message = ResCode.SUCCESS.getMsg();
     }
 
+    public ApiResponse(ResCode resCode) {
+        this.code = resCode.getCode();
+        this.message = resCode.getMsg();
+    }
 
     public Integer getCode() {
         return code;

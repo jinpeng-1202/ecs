@@ -18,8 +18,9 @@ public class TestController {
 
 
     @GetMapping("/test")
-    public void test(HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public String test(HttpServletResponse response, HttpServletRequest request) throws IOException {
 
+        return "aaaa";
 
     }
 
