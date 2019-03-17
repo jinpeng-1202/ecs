@@ -2,33 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jin.dao.TSysRoleDao">  
 	<sql id="select_column_list">
-		role_name as roleName,create_time as createTime,id as id
+		role_name as roleName,create_time as createTime,name as name,id as id
 	</sql>
 	<sql id="insertcolumn_list">
-		role_name,create_time,id
+		role_name,create_time,name,id
 	</sql>
 	<sql id="where_condition">
 		<if test="roleName != null"> AND  role_name = #{roleName}  </if>
  		<if test="createTime != null"> AND  create_time = #{createTime}  </if>
+ 		<if test="name != null"> AND  name = #{name}  </if>
  		<if test="id != null"> AND  id = #{id}  </if>
  	</sql>
 
 	<sql id="set_condition">
 		<if test="roleName != null">  role_name = #{roleName}, </if>
  		<if test="createTime != null">  create_time = #{createTime}, </if>
+ 		<if test="name != null">  name = #{name}, </if>
  		<if test="id != null">  id = #{id}, </if>
  	</sql>
 
 
 	<insert id="insert" parameterType="com.jin.model.TSysRole"  keyProperty="id" keyColumn="id" useGeneratedKeys="true"> 
 		 insert into t_sys_role		(<include refid="insertcolumn_list" />)		values 
-		(		 #{roleName},#{createTime},#{id}) 
+		(		 #{roleName},#{createTime},#{name},#{id}) 
 	</insert> 
 
 	<insert id="insertBatch" parameterType="ArrayList"> 
 		 insert into t_sys_role		(<include refid="insertcolumn_list" />)		 values 
 		 <foreach collection="list" item="obj"  index="index" separator="," >  
-			(		 #{obj.roleName},#{obj.createTime},#{obj.id}) 
+			(		 #{obj.roleName},#{obj.createTime},#{obj.name},#{obj.id}) 
  		</foreach>  
 	</insert> 
 
@@ -74,5 +76,12 @@
  	 </select>
 
 <!--*********************************以下可以写自定义的语句*****************************-->
+
+
+
+	<select id="getRolesByUID"  parameterType="java.lang.Long" resultType="com.jin.model.TSysRole">
+		select 	 a.`role_name` as roleName,a.`name` as name
+		FROM  t_sys_role a,t_role_user b WHERE a.`id`=b.`role_id` AND b.`user_id`=#{userId};
+	</select>
 
 </mapper>

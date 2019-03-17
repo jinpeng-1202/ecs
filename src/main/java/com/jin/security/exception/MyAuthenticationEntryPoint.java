@@ -1,4 +1,4 @@
-package com.jin.security;
+package com.jin.security.exception;
 
 import com.alibaba.fastjson.JSON;
 import com.jin.bean.ApiResponse;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     /**
-     * 用户没有登录时返回给前端的数据
+     * 用户未登录
      * @param request
      * @param response
      * @param e

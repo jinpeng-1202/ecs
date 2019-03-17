@@ -18,13 +18,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private TSysUserService userService;
 
+    /**
+     * 加载用户
+     * @param s
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
         SysUser user = userService.queryUserByName(s);
-        if (user == null) {
-            throw new UsernameNotFoundException("用户名不对");
-        }
 
         return user;
     }

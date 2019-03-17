@@ -1,4 +1,4 @@
-package com.jin.security;
+package com.jin.security.exception;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,7 @@ public class MyAuthenticationFailHander extends SimpleUrlAuthenticationFailureHa
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
         response.getWriter().write(JSON
-                .toJSONString(new ApiResponse(ResCode.LOGIN_FAILURE)));
+                .toJSONString(new ApiResponse(ResCode.LOGIN_FAILURE.getCode(),exception.getMessage())));
 
     }
 

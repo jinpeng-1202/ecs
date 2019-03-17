@@ -27,11 +27,11 @@ public class CreateModelFromDB {
     private static Connection conn=null;
 
 
-    private static String javapath="D:\\my-git\\ecs\\src\\main\\java\\com\\jin\\model\\";
-    private static String xmlpath="D:\\my-git\\ecs\\src\\main\\resources\\mapper\\";
+    private static String javapath="D:\\code\\ecs\\src\\main\\java\\com\\jin\\model\\";
+    private static String xmlpath="D:\\code\\ecs\\src\\main\\resources\\mapper\\";
 
-    private static String servicePath="D:\\my-git\\ecs\\src\\main\\java\\com\\jin\\service\\";
-    private static String serviceImplPath="D:\\my-git\\ecs\\src\\main\\java\\com\\jin\\service\\impl\\";
+    private static String servicePath="D:\\code\\ecs\\src\\main\\java\\com\\jin\\service\\";
+    private static String serviceImplPath="D:\\code\\ecs\\src\\main\\java\\com\\jin\\service\\impl\\";
 
     private static String mappingPackage="com.jin.dao";
     private static String javaPackage="com.jin.model";
@@ -45,7 +45,7 @@ public class CreateModelFromDB {
             CreateModelFromDB dbModel=new CreateModelFromDB() ;
             Map<String,String>map=dbModel. getTableName();
             for(Map.Entry<String, String> en:map.entrySet()){
-                if( !en.getKey().equalsIgnoreCase("t_role_user")){
+                if( !en.getKey().equalsIgnoreCase("t_sys_role")){
                     continue;
                 }
                 System.out.println(en.getKey());

@@ -1,7 +1,9 @@
 package com.jin.security;
 
+import com.jin.security.exception.AuthenticationAccessDeniedHandler;
 import com.jin.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.CharacterEncodingFilter;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author jinpeng
@@ -24,13 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
-    private UrlFilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource;
-    @Autowired
-    private UrlAccessDecisionManager urlAccessDecisionManager;
-    @Autowired
     private AuthenticationAccessDeniedHandler accessDeniedHandler;
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
+    @Autowired
+    private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
 
     @Autowired
     private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
@@ -44,50 +49,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v1/api/get/verificationCode", "/static/**");
+        //web.ignoring().antMatchers("/v1/api/get/verificationCode", "/static/**");
     }
-
-    /*@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
-                    @Override
-                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
-                        o.setSecurityMetadataSource(urlFilterInvocationSecurityMetadataSource);
-                        o.setAccessDecisionManager(urlAccessDecisionManager);
-                        return o;
-                    }
-                })
-                .and().formLogin()
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll()
-                .failureHandler(myAuthenticationFailHander)
-                .successHandler(myAuthenticationSuccessHandler)
-                .and().logout().permitAll()
-                .and().csrf().disable().exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler);
-    }*/
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
+        //添加转码
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        encodingFilter.setForceEncoding(true);
+        http.addFilterBefore(encodingFilter, CsrfFilter.class);
 
-                .httpBasic().authenticationEntryPoint(authenticationEntryPoint)
+        http
+                //.addFilterBefore(new MyUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable()
+                .httpBasic().authenticationEntryPoint(authenticationEntryPoint)//未登录
+
+                .and()
+                .formLogin().loginProcessingUrl("/v1/login")//登陆入口
+                .authenticationDetailsSource(authenticationDetailsSource) //自定义登陆参数
+                .successHandler(myAuthenticationSuccessHandler) // 登录成功
+                .failureHandler(myAuthenticationFailHander) // 登录失败
+                .permitAll()
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/v1/api/test").hasAuthority("ADMIN")
-                .anyRequest()
-                .authenticated(); // 其他 url 需要身份认证
-
-                /*.and()
-                .formLogin()  //开启登录
-                .successHandler(myAuthenticationSuccessHandler) // 登录成功
-                .failureHandler(myAuthenticationFailHander) // 登录失败
-                .permitAll();*/
+                .antMatchers("/v1/open/*").permitAll()//过滤不需要鉴权的资源
+                .anyRequest().access("@rbacService.hasPermission(request,authentication)"); //必须经过认证以后才能访问
 
                /* .and()
                 .logout()
@@ -97,34 +87,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler); // 无权访问 JSON 格式的数据
 
     }
-
-
-    /*@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .exceptionHandling()
-                .accessDeniedHandler(new GoAccessDeniedHandler())
-                .authenticationEntryPoint(new GoAuthenticationEntryPoint())
-                .and().authorizeRequests()
-                .antMatchers("/", "/csrf").permitAll()
-                .antMatchers("/hello").hasAuthority("ADMIN")
-                .anyRequest().authenticated()
-                .and().formLogin()
-                .loginProcessingUrl("/login").permitAll()
-                .successHandler(new GoAuthenticationSuccessHandler())
-                .failureHandler(new GoAuthenticationFailureHandler())
-                .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessHandler(new GoLogoutSuccessHandler())
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .and().requiresChannel()
-                .antMatchers("/pomer").requiresSecure()
-                .anyRequest().requiresInsecure()
-                .and().rememberMe()
-                .tokenValiditySeconds(1800)
-                .key("token_key");
-    }*/
 
 
 }

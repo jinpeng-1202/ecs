@@ -1,7 +1,9 @@
 package com.jin.mock;
 
 import com.alibaba.fastjson.JSON;
-import com.jin.model.TSysUser;
+import com.jin.model.TSysMenu;
+import com.jin.service.TSysMenuService;
+import com.jin.service.TSysRoleService;
 import com.jin.service.TSysUserService;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,6 +51,10 @@ public class MockTest {
 
     @Autowired
     private TSysUserService userService;
+    @Autowired
+    private TSysRoleService roleService;
+    @Autowired
+    private TSysMenuService menuService;
 
     @Test
     public void getMXData() throws Exception {
@@ -59,7 +70,12 @@ public class MockTest {
     @Test
     public void test() throws Exception {
 
-        System.out.println(JSON.toJSONString(userService.queryList(new TSysUser())));
+        List<String> roles = new ArrayList<>();
+        roles.add("ROLE_APPLY");
+        Map<String, Object> map = new HashMap<>();
+        map.put("roleNames", roles);
+        List<TSysMenu> menus = menuService.getListBySqlId("getMenuByRoles", map, new TSysMenu());
+        System.out.println(JSON.toJSON(menus));
     }
 
 }

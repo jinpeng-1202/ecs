@@ -14,9 +14,21 @@ import java.util.List;
  * @author jinpeng
  * @date 2019/3/15.
  */
-public class SysUser extends TSysUser implements UserDetails {
+public class SysUser implements UserDetails {
 
+    private TSysUser sysUser;
+    /**
+     * 用户具有的角色列表
+     */
     private List<TSysRole> roles;
+
+    public SysUser(){}
+
+    public SysUser(TSysUser sysUser, List<TSysRole> roles) {
+        this.sysUser = sysUser;
+        this.roles = roles;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -28,23 +40,33 @@ public class SysUser extends TSysUser implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return sysUser.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return sysUser.getUsername();
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return getAccountNonExpired();
+        return sysUser.getAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return getAccountNonLocked();
+        return sysUser.getAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return getCredentialsNonExpired();
+        return sysUser.getCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return getEnabled();
+        return sysUser.getEnabled();
     }
 
     public List<TSysRole> getRoles() {
@@ -55,4 +77,11 @@ public class SysUser extends TSysUser implements UserDetails {
         this.roles = roles;
     }
 
+    public TSysUser getSysUser() {
+        return sysUser;
+    }
+
+    public void setSysUser(TSysUser sysUser) {
+        this.sysUser = sysUser;
+    }
 }

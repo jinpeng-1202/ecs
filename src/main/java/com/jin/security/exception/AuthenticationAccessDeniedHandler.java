@@ -1,4 +1,4 @@
-package com.jin.security;
+package com.jin.security.exception;
 
 import com.alibaba.fastjson.JSON;
 import com.jin.bean.ApiResponse;

@@ -6,6 +6,7 @@ import com.jin.model.TSysUser;
 import com.jin.service.TSysRoleService;
 import com.jin.service.TSysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 @Service
 public class TSysUserServiceImpl extends BaseServiceImpl<TSysUser>  implements TSysUserService {
@@ -15,15 +16,12 @@ public class TSysUserServiceImpl extends BaseServiceImpl<TSysUser>  implements T
 
     @Override
     public SysUser queryUserByName(String username) {
-        SysUser user=new SysUser();
-        user.setId(1L);
-        user.setUsername("jinp");
-        user.setPassword("123456");
-        user.setAccountNonExpired(true);
-        user.setCredentialsNonExpired(true);
-        user.setEnabled(true);
-        user.setAccountNonLocked(true);
-        user.setRoles(roleService.queryRolesByUid(user.getId()));
-        return user;
+        TSysUser sysUser=new TSysUser();
+        sysUser.setUsername(username);
+        sysUser=queryObj(sysUser);
+        if(sysUser==null){
+            throw new BadCredentialsException("用户名不存在");
+        }
+        return new SysUser(sysUser,roleService.queryRolesByUid(sysUser.getId()));
     }
 }

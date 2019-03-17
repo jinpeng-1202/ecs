@@ -28,6 +28,11 @@ public class ApiResponse implements Serializable {
         this.message = resCode.getMsg();
     }
 
+    public ApiResponse(Integer code,String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public Integer getCode() {
         return code;
     }

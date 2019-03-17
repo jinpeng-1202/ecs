@@ -13,6 +13,8 @@ public class TSysRole extends BaseModel {
     private String  roleName; 
     /**  */ 
     private Date  createTime; 
+    /**  */ 
+    private String  name; 
 
     /**  */ 
     public Long getId(){
@@ -40,5 +42,14 @@ public class TSysRole extends BaseModel {
     /**  */ 
     public void setCreateTime(Date  createTime){
         this.createTime = createTime;
+    }
+    /**  */ 
+    public String getName(){
+        return name;
+    }
+
+    /**  */ 
+    public void setName(String  name){
+        this.name = name;
     }
 }

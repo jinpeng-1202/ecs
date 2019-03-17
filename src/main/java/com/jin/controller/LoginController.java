@@ -4,64 +4,26 @@ import com.alibaba.fastjson.JSON;
 import com.jin.bean.ApiResponse;
 import com.jin.bean.LoginReq;
 import com.jin.bean.SubMenu;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author jinpeng
  * @date 2019/3/13.
  */
 @RestController
-@RequestMapping("/v1/api")
+@RequestMapping("/v1")
 public class LoginController {
 
-    private static char[] chs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".toCharArray();
-    private static final int NUMBER_OF_CHS = 4;
-    private static final int IMG_WIDTH = 65;
-    private static final int IMG_HEIGHT = 25;
-    private static Random r = new Random();
-
-    @GetMapping("/get/verificationCode")
-    public void verificationCode(HttpServletResponse response, HttpServletRequest request) throws IOException {
-        // 实例化BufferedImage
-        BufferedImage image = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, BufferedImage.TYPE_INT_RGB);
-        Graphics g = image.getGraphics();
-        // 验证码图片的背景颜色
-        Color c = new Color(255, 252, 117);
-        g.setColor(c);
-        // 图片的边框
-        g.fillRect(0, 0, IMG_WIDTH, IMG_HEIGHT);
-
-        // 用于保存验证码字符串
-        StringBuffer sb = new StringBuffer();
-        int index;
-        for (int i = 0; i < NUMBER_OF_CHS; i++) {
-            // 随机一个下标
-            index = r.nextInt(chs.length);
-            // 随机一个颜色
-            g.setColor(new Color(r.nextInt(88), r.nextInt(210), r.nextInt(150)));
-            // 画出字符
-            g.drawString(chs[index] + "", 15 * i + 3, 18);
-            // 验证码字符串
-            sb.append(chs[index]);
-        }
-
-        // 将验证码字符串保存到session中
-        request.getSession().setAttribute("piccode", sb.toString());
-        ImageIO.write(image, "jpg", response.getOutputStream());
-
-    }
 
     @PostMapping("/login")
     public ApiResponse login(@RequestBody LoginReq loginReq, HttpServletRequest request) throws Exception {
+        System.out.println("login************** "+JSON.toJSON(loginReq));
         ApiResponse res = new ApiResponse();
         System.out.println(JSON.toJSONString(loginReq));
         String str = (String) request.getSession().getAttribute("piccode");

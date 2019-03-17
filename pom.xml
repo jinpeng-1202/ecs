@@ -185,7 +185,6 @@
         </dependency>
 
 
-
     </dependencies>
 
 
@@ -212,7 +211,6 @@
             </properties>
         </profile>
     </profiles>
-
 
 
     <build>
@@ -248,22 +246,18 @@
     </build>
 
 
-    <!-- 设定插件仓库, 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
-    <pluginRepositories>
-        <pluginRepository>
-            <id>public</id>
-            <url>http://svn.jufandev.com:8087/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
     <repositories>
         <repository>
-            <id>central</id>
-            <name>central</name>
-            <!-- 配置仓库的地址 -->
-            <url>http://svn.jufandev.com:8087/nexus/content/groups/public</url>
+            <id>maven-ali</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
         </repository>
     </repositories>
 
