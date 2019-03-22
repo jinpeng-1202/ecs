@@ -65,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         encodingFilter.setForceEncoding(true);
         http.addFilterBefore(encodingFilter, CsrfFilter.class);
 
+
         LoginAuthenticationFilter loginAuthenticationFilter = new LoginAuthenticationFilter();
         loginAuthenticationFilter.setAuthenticationManager(authenticationManager());
         loginAuthenticationFilter.setAuthenticationFailureHandler(myAuthenticationFailHander);
