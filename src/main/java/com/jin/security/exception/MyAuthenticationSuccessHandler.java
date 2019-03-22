@@ -3,9 +3,7 @@ package com.jin.security.exception;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jin.bean.ApiResponse;
-import com.jin.common.Constant;
 import com.jin.common.enums.ResCode;
-import com.jin.security.CustomWebAuthenticationDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -34,9 +32,9 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
             throws IOException, ServletException {
 
         System.out.println("***************************");
-        System.out.println(request.getSession().getAttribute(Constant.VALIDATE_CODE));
+        /*System.out.println(request.getSession().getAttribute(Constant.VALIDATE_CODE));
         CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication.getDetails();
-        System.out.println(JSON.toJSON(details.getImgCode()));
+        System.out.println(JSON.toJSON(details.getImgCode()));*/
 
         response.getWriter().write(JSON
                 .toJSONString(new ApiResponse(ResCode.SUCCESS)));

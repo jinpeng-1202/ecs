@@ -1,6 +1,7 @@
 package com.jin.security;
 
 import com.jin.security.exception.AuthenticationAccessDeniedHandler;
+import com.jin.security.filter.LoginAuthenticationFilter;
 import com.jin.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationDetailsSource;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.stereotype.Component;
@@ -34,13 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationAccessDeniedHandler accessDeniedHandler;
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
-    @Autowired
-    private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
 
     @Autowired
     private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
     @Autowired
     private AuthenticationFailureHandler myAuthenticationFailHander;
+    @Autowired
+    private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -62,29 +65,44 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         encodingFilter.setForceEncoding(true);
         http.addFilterBefore(encodingFilter, CsrfFilter.class);
 
+        LoginAuthenticationFilter loginAuthenticationFilter = new LoginAuthenticationFilter();
+        loginAuthenticationFilter.setAuthenticationManager(authenticationManager());
+        loginAuthenticationFilter.setAuthenticationFailureHandler(myAuthenticationFailHander);
+
         http
-                //.addFilterBefore(new MyUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(loginAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf().disable()
-                .httpBasic().authenticationEntryPoint(authenticationEntryPoint)//未登录
+                .httpBasic()
+                //未登录
+                .authenticationEntryPoint(authenticationEntryPoint)
 
                 .and()
-                .formLogin().loginProcessingUrl("/v1/login")//登陆入口
-                .authenticationDetailsSource(authenticationDetailsSource) //自定义登陆参数
-                .successHandler(myAuthenticationSuccessHandler) // 登录成功
-                .failureHandler(myAuthenticationFailHander) // 登录失败
+                .formLogin()
+                //登陆入口
+                .loginProcessingUrl("/v1/login")
+                //自定义登陆参数
+                .authenticationDetailsSource(authenticationDetailsSource)
+                // 登录成功
+                .successHandler(myAuthenticationSuccessHandler)
+                // 登录失败
+                .failureHandler(myAuthenticationFailHander)
                 .permitAll()
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/v1/open/*").permitAll()//过滤不需要鉴权的资源
-                .anyRequest().access("@rbacService.hasPermission(request,authentication)"); //必须经过认证以后才能访问
+                //过滤不需要鉴权的资源
+                .antMatchers("/v1/open/**").permitAll()
+                .antMatchers("/v1/system/loadUserMenu").permitAll()
+                //必须经过认证以后才能访问
+                .anyRequest().access("@rbacService.hasPermission(request,authentication)");
 
                /* .and()
                 .logout()
                 .logoutSuccessHandler(logoutSuccessHandler)
                 .permitAll();*/
 
-        http.exceptionHandling().accessDeniedHandler(accessDeniedHandler); // 无权访问 JSON 格式的数据
+        // 无权访问
+        http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
     }
 

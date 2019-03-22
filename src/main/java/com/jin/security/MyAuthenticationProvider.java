@@ -1,6 +1,5 @@
 package com.jin.security;
 
-import com.alibaba.fastjson.JSON;
 import com.jin.bean.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -30,14 +29,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication.getDetails();
-        System.out.println(JSON.toJSON(details));
-
-        /*HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String imgCode = (String) request.getSession().getAttribute("imgCode");
-        if (!details.getImgCode().equalsIgnoreCase(imgCode)) {
-            throw new BadCredentialsException("验证码不正确");
-        }*/
+        /*CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication.getDetails();
+        System.out.println(JSON.toJSON(details));*/
 
         String userName = authentication.getName();// 这个获取表单输入中返回的用户名;
         String password = (String) authentication.getCredentials();// 这个是表单中输入的密码；

@@ -19,6 +19,8 @@ public class TSysMenu extends BaseModel {
     private String  name; 
     /**  */ 
     private Date  createTime; 
+    /**  */ 
+    private String  urlCode; 
 
     /**  */ 
     public Long getId(){
@@ -73,5 +75,14 @@ public class TSysMenu extends BaseModel {
     /**  */ 
     public void setCreateTime(Date  createTime){
         this.createTime = createTime;
+    }
+    /**  */ 
+    public String getUrlCode(){
+        return urlCode;
+    }
+
+    /**  */ 
+    public void setUrlCode(String  urlCode){
+        this.urlCode = urlCode;
     }
 }

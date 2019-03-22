@@ -15,4 +15,6 @@ public class TSysRoleServiceImpl extends BaseServiceImpl<TSysRole> implements TS
 
         return getListBySqlId("getRolesByUID", uid, new TSysRole());
     }
+
+
 }

@@ -4,6 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.jin.bean.ApiResponse;
 import com.jin.bean.LoginReq;
 import com.jin.bean.SubMenu;
+import com.jin.bean.SysUser;
+import com.jin.common.enums.ResCode;
+import com.jin.service.TSysMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,29 +27,30 @@ import java.util.ArrayList;
 public class LoginController {
 
 
-    @PostMapping("/login")
+    @Autowired
+    private TSysMenuService menuService;
+
+    //@PostMapping("/login")
     public ApiResponse login(@RequestBody LoginReq loginReq, HttpServletRequest request) throws Exception {
-        System.out.println("login************** "+JSON.toJSON(loginReq));
+        System.out.println("login************** " + JSON.toJSON(loginReq));
         ApiResponse res = new ApiResponse();
-        System.out.println(JSON.toJSONString(loginReq));
-        String str = (String) request.getSession().getAttribute("piccode");
-        if (!loginReq.getImgCode().equalsIgnoreCase(str)) {
-            res.setCode(999);
-            res.setMessage("error");
-        }
         return res;
     }
 
 
-
     @PostMapping("/system/loadUserMenu")
-    public ApiResponse loadUserMenu(HttpServletRequest request) throws Exception {
+    public ApiResponse loadUserMenu(HttpServletRequest request)
+            throws Exception {
         ApiResponse res = new ApiResponse();
 
-        res.setData(getMenu());
-
-        System.out.println(JSON.toJSONString(res));
-
+        System.out.println(JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object instanceof String) {
+            return new ApiResponse(ResCode.NOT_LOGIN);
+        } else if (object instanceof UserDetails) {
+            SysUser sysUser = (SysUser) object;
+            res.setData(menuService.querySubMenu(sysUser));
+        }
         return res;
     }
 
@@ -52,7 +59,7 @@ public class LoginController {
 
         java.util.List<SubMenu> subMenus = new ArrayList<>();
 
-        SubMenu subMenu=new SubMenu();
+        SubMenu subMenu = new SubMenu();
         subMenu.setId("1e2ac76b08914dbe8b36ef82ad189a7a");
         subMenu.setName("系统管理");
         subMenu.setOpen("true");
@@ -60,14 +67,14 @@ public class LoginController {
         subMenu.setParentId("-1");
 
 
-        SubMenu subMenu1=new SubMenu();
+        SubMenu subMenu1 = new SubMenu();
         subMenu1.setId("613b6a624a424485b8e086f671948b81");
         subMenu1.setName("重置合同状态");
         subMenu1.setOpen("true");
         subMenu1.setUrlCode("resetContractStatus");
         subMenu1.setParentId("1e2ac76b08914dbe8b36ef82ad189a7a");
 
-        SubMenu subMenu2=new SubMenu();
+        SubMenu subMenu2 = new SubMenu();
         subMenu2.setId("633bac5e4d5843e99ef938bea9f4cdbd");
         subMenu2.setName("个人密码修改");
         subMenu2.setOpen("true");
