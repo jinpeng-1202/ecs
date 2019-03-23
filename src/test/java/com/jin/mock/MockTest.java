@@ -1,3 +1,4 @@
+/*
 package com.jin.mock;
 
 import com.alibaba.fastjson.JSON;
@@ -24,10 +25,12 @@ import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+*/
 /**
  * @author jinpeng
  * @date 2019/3/14.
- */
+ *//*
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MockTest {
@@ -73,3 +76,4 @@ public class MockTest {
     }
 
 }
+*/
