@@ -230,7 +230,7 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-        <plugins>
+        <!--<plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -242,7 +242,7 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins>-->
 
 <!--
         <defaultGoal>compile</defaultGoal>
