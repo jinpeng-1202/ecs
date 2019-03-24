@@ -1,5 +1,6 @@
 package com.jin.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +21,10 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        System.out.println(JSON.toJSON(request.getHeaderNames()));
+        System.out.println(request.getHeader("Host"));
         System.out.println("test test");
-        return "试试sss";
+        return "success";
 
     }
 
