@@ -1,8 +1,6 @@
 package com.jin.mock;
 
-import com.alibaba.fastjson.JSON;
-import com.jin.common.ModelConverUtil;
-import com.jin.model.TSysMenu;
+import com.jin.common.RedisUtil;
 import com.jin.service.TSysMenuService;
 import com.jin.service.TSysRoleService;
 import com.jin.service.TSysUserService;
@@ -18,8 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -65,11 +61,23 @@ public class MockTest {
         System.out.println(responseString);//返回值
     }
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Test
     public void test() throws Exception {
 
-        List<TSysMenu> menus = menuService.queryList(new TSysMenu());
-        System.out.println(JSON.toJSONString(ModelConverUtil.getSubMenu(menus)));
+        for (int i = 0; i < 5; i++) {
+            int finalI = i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    redisUtil.strings().set("ecs-" + finalI, "value-" + finalI);
+                    System.out.println("aaaaaaaaaaaaaa+"+finalI);
+                }
+            }).start();
+        }
+
     }
 
 }

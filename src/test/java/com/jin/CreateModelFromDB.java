@@ -45,7 +45,7 @@ public class CreateModelFromDB {
             CreateModelFromDB dbModel=new CreateModelFromDB() ;
             Map<String,String>map=dbModel. getTableName();
             for(Map.Entry<String, String> en:map.entrySet()){
-                if( !en.getKey().equalsIgnoreCase("t_sys_menu")){
+                if( !en.getKey().equalsIgnoreCase("t_article")){
                     continue;
                 }
                 System.out.println(en.getKey());
