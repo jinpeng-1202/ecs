@@ -1,3 +1,4 @@
+/*
 package com.jin;
 
 
@@ -148,10 +149,12 @@ public class CreateModelFromDB {
         StringBuffer sb=new StringBuffer();
         sb.append("package  "+javaPackage+"; \n\n");
         sb.append("import java.util.Date;\n\n");
-        sb.append("/**\n");
+        sb.append("*/
+/**\n");
         sb.append("*"+tableName+"\n");
         sb.append("* 表名："+tableComment+"\n");
-        sb.append("*/\n");
+        sb.append("*//*
+\n");
 //		T_CORPORATION_RIGTH_IFNO
         sb.append("public class "+getClassName(tableName)+" extends BaseModel {\n");
 
@@ -160,18 +163,24 @@ public class CreateModelFromDB {
             String column_name=rs.getString("column_name");
             String column_comment=rs.getString("column_comment");
             String column_type=rs.getString("column_type");
-            sb.append("    /** "+column_comment+" */ \n");
+            sb.append("    */
+/** "+column_comment+" *//*
+ \n");
             String propertiesName=getPropertiesName(column_name);
             String first=propertiesName.substring(0,1);
             String firstUpperCOl = propertiesName.replaceFirst(first,first.toUpperCase());
             sb.append("    private "+getJavaType(column_type)+"  "+propertiesName+"; \n");
 
-            sm.append("    /** "+column_comment+" */ \n");
+            sm.append("    */
+/** "+column_comment+" *//*
+ \n");
             sm.append("    public "+getJavaType(column_type)+" get"+firstUpperCOl+"(){\n");
             sm.append("        return "+propertiesName+";\n");
             sm.append("    }\n\n");
 
-            sm.append("    /** "+column_comment+" */ \n");
+            sm.append("    */
+/** "+column_comment+" *//*
+ \n");
             sm.append("    public void set"+firstUpperCOl+"("+getJavaType(column_type) +"  "+propertiesName+"){\n");
             sm.append("        this."+propertiesName+" = "+propertiesName+";\n");
             sm.append("    }\n");
@@ -528,3 +537,4 @@ public class CreateModelFromDB {
         }
     }
 }
+*/

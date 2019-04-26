@@ -1,3 +1,4 @@
+/*
 package com.jin.mock;
 
 import com.jin.common.RedisUtil;
@@ -20,10 +21,12 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+*/
 /**
  * @author jinpeng
  * @date 2019/3/14.
- */
+ *//*
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MockTest {
@@ -81,3 +84,4 @@ public class MockTest {
     }
 
 }
+*/

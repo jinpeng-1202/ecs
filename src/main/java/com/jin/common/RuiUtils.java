@@ -76,6 +76,10 @@ public class RuiUtils {
     }
 
 
+
+
+
+
     public static String judgeSexByIdNo(String no) {
 
         String sex = "0";
@@ -238,6 +242,7 @@ public class RuiUtils {
         }
         return fourRandom;
     }
+
 
 
     /**
@@ -426,6 +431,7 @@ public class RuiUtils {
         }
         return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
     }
+
 
 
     public static List<String> convertList(String[] strings) {
