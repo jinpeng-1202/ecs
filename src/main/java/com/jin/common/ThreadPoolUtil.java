@@ -14,12 +14,12 @@ public class ThreadPoolUtil {
      *     发送短信
      *     记录登录日志
      */
-    public static ExecutorService commonPool = Executors.newFixedThreadPool(8);
+    public static ExecutorService commonPool = Executors.newFixedThreadPool(5);
 
     /**
      * 查询核心合同信息
      */
-    public static ExecutorService queryCorePool = Executors.newFixedThreadPool(8);
+    public static ExecutorService queryCorePool = Executors.newFixedThreadPool(5);
 
     /**
      * 单线程池，使用地方：
@@ -37,4 +37,6 @@ public class ThreadPoolUtil {
      * 资管推送注册用户
      */
     public static ExecutorService userPool = Executors.newFixedThreadPool(2);
+
+    //public static ExecutorService user = new ThreadPoolExecutor();
 }

@@ -43,7 +43,7 @@ public class ArticleController {
     public ApiResponse init(HttpServletResponse response, HttpServletRequest request) throws IOException {
         TUser user = new TUser();
         List<TUser> users = userService.queryList(user);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             TUser user1 = users.get(new Random().nextInt(200));
             Double time = Double.valueOf(System.currentTimeMillis()) / 1000;
 
@@ -62,7 +62,7 @@ public class ArticleController {
             map.put("time", time + "");
             map.put("userId", user1.getId() + "");
             map.put("votes", 0 + "");
-            map.put("articleId", article.getId()+"");
+            map.put("articleId", article.getId() + "");
 
             redisUtil.hash().putAll("article:" + article.getId(), map);
             Double score = time + 436 * 0;
@@ -125,6 +125,13 @@ public class ArticleController {
             articles.add(amap);
         }
         res.setData(articles);
+        return res;
+    }
+
+    @PostMapping("/increment")
+    public ApiResponse test() {
+        ApiResponse res = new ApiResponse();
+        res.setData(redisUtil.strings().setIfAbsent("string:int","1"));
         return res;
     }
 

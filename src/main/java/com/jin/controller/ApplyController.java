@@ -19,6 +19,7 @@ public class ApplyController {
     @PostMapping("/userInfo")
     public String userInfo(HttpServletResponse response, HttpServletRequest request) throws IOException {
         System.out.println("userInfo");
+        request.getCookies();
         return "用户信息查询";
     }
 
