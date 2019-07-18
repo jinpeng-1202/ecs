@@ -1,1 +1,51 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{
+	"identityNo":"310107198511241332",
+	"mobile":"15618665399",
+	"identityName":"周志敏",
+	"addrDetail": "北京市",
+	"amount": "50000.0",
+	"applyChannel": "android",
+	"careerInfo": {
+		"compAddrCode": "110000|110100",
+		"compAddrDetail": "牛肉粒",
+		"compName": "上海市",
+		"compPhone": "62222222",
+		"compType": "1",
+		"email": "",
+		"incomeSource": "工资",
+		"monthIncome": "25000.0",
+		"workDept": "艾"
+	},
+	"careerType": "2",
+	"cityCode": "110000|110100|110101",
+	"contactsInfo": [{
+			"mobile": "15888888881",
+			"name": "会不会",
+			"relation": "2",
+			"type": "1"
+		}, {
+			"mobile": "15888888888",
+			"name": "我看看",
+			"relation": "9",
+			"type": "2"
+		}
+	],
+	"contract": "true",
+	"degreeCode": "3",
+	"estateCode": "1",
+	"faceScore": "85.652",
+	"hosCode": "12060201",
+	"latitude": "31.185843",
+	"longitude": "121.386287",
+	"maritalCode": "1",
+	"notifyUrl": "http://47.101.57.79:8111/qr/pushLoanApplyResult",
+	"outOrderId": "UIR19071618280130910",
+	"outUserId": "2020000011270",
+	"period": "3",
+	"platform": "meilai",
+	"projCode": "2004",
+	"projName": "妇科",
+	"protocol": "true",
+	"randomNum": "15632729163125132",
+	"sign": "NXYh1pYs8PHizbFZQuc49q9g+kJ0Y6ktm9P0RIMeLQP2nGj2xeYCQ90Sk5PjiIKtCALqEcxrS1w7ML9traAdrGjpthli0uGsQAP3985R7X3UfQLlystU90tf9Uw0drwNwCcYMS+1O8UO0k9F0HCZVbN4SkEqOr5r2sNguxzEvrw="
+}

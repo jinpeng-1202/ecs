@@ -19,4 +19,9 @@ public class ProxyObject extends AbstractObject {
         realObject.operation();
         System.out.println("proxy after do something");
     }
+
+    public static void main(String[] args) {
+        ProxyObject proxyObject=new ProxyObject(new RealObject());
+        proxyObject.operation();
+    }
 }

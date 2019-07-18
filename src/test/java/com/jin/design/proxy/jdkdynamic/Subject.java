@@ -6,5 +6,5 @@ package com.jin.design.proxy.jdkdynamic;
  */
 public interface Subject {
 
-    void dosomething();
+    void dosomething(String a);
 }
