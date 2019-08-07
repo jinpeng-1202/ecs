@@ -7,6 +7,6 @@ package com.jin.design.adapter;
 public class Adaptee {
 
     public void adapteeRequest() {
-        System.out.println("Adaptee ...");
+        System.out.println("Adaptee  ...");
     }
 }

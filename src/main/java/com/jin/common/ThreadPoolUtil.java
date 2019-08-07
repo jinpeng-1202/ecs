@@ -39,4 +39,6 @@ public class ThreadPoolUtil {
     public static ExecutorService userPool = Executors.newFixedThreadPool(2);
 
     //public static ExecutorService user = new ThreadPoolExecutor();
+
+    public static ExecutorService shePool=Executors.newScheduledThreadPool(10);
 }

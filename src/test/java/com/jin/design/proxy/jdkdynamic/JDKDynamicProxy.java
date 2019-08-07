@@ -1,6 +1,7 @@
 package com.jin.design.proxy.jdkdynamic;
 
 import com.alibaba.fastjson.JSON;
+import com.jin.bean.User;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -35,6 +36,11 @@ public class JDKDynamicProxy implements InvocationHandler {
     public <T> T getProxy() {
         return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(),
                 target.getClass().getInterfaces(), this);
+    }
+
+    public static void main(String[] args) {
+        User user = new User();
+        System.out.println(user.getClass().getInterfaces().getClass().getName());
     }
 
 }

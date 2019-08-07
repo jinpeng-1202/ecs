@@ -10,7 +10,7 @@ import java.net.Socket;
  * @author jinpeng
  * @date 2019/5/16.
  */
-public class HttpSocket {
+public class ServerSocketDemo {
 
     public static void main(String[] args) throws IOException {
 

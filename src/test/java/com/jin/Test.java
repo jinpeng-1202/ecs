@@ -4,15 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.jin.model.TUser;
 import com.jin.threadtest.Dish;
 
-import java.io.*;
-import java.net.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +23,9 @@ public class Test {
     public static Integer num = 0;
     public static CountDownLatch end = new CountDownLatch(10);
     public static List<Integer> list = new ArrayList<>();
+    public static List<Integer> list2 = new LinkedList<>();
+
+
     public static ConcurrentLinkedQueue<Integer> queue = new ConcurrentLinkedQueue<>();
     public static ArrayBlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<>(10);
     public static ConcurrentSkipListMap<String, Integer> skipListMap = new ConcurrentSkipListMap<>();
@@ -34,29 +36,17 @@ public class Test {
     public static AtomicReference<TUser> userAtomicReference = new AtomicReference<>();
     //public static AtomicStampedReference<Integer> integerAtomicStampedReference=new AtomicStampedReference<>();
     public static SynchronousQueue<Integer> integers = new SynchronousQueue<>();
-    private static CopyOnWriteArrayList<String> copyOnWriteArrayList=new CopyOnWriteArrayList<>();
+    private static CopyOnWriteArrayList<String> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
 
+    //AQS
+    AbstractQueuedSynchronizer abstractQueuedSynchronizer;
+    private static ReentrantLock lock=new ReentrantLock();
 
 
     public static final Dish dish = new Dish("d1", false, 100, Dish.Type.FISH);
 
     public static void main(String[] args) throws InterruptedException, IOException, URISyntaxException {
-
-        try{
-            //提示信息
-            System.out.println("请输入：");
-            //数组缓冲
-            byte[] b = new byte[1024];
-            while (true) {
-                //读取数据
-                int n = System.in.read(b);
-                //转换为字符串
-                String s = new String(b, 0, n);
-                //回显内容
-                System.out.println("输入内容为：" + s);
-            }
-        }catch(Exception e){}
-
+        System.out.println(16>>4);
     }
 
     public void a() {
