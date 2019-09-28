@@ -12,4 +12,5 @@ public class Adapter extends Adaptee implements Target {
         adapteeRequest();
         System.out.println("adapter request");
     }
+
 }

@@ -1,5 +1,6 @@
 package com.jin.design.observe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public class TeacherSubject implements Subject {
 
-    private List<Observer> observers;
+    private List<Observer> observers=new ArrayList<>();
     private String info;
 
     @Override

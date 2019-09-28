@@ -1,7 +1,6 @@
-/*
+
 package com.jin.mock;
 
-import com.jin.common.RedisUtil;
 import com.jin.service.TSysMenuService;
 import com.jin.service.TSysRoleService;
 import com.jin.service.TSysUserService;
@@ -21,11 +20,10 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-*/
 /**
  * @author jinpeng
  * @date 2019/3/14.
- *//*
+ */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -55,7 +53,7 @@ public class MockTest {
 
     @Test
     public void getMXData() throws Exception {
-        String url = "/v1/api/operator/queryResult";
+        String url = "/v1/open/test";
         String responseString = mockMvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(""))//入参
@@ -64,24 +62,6 @@ public class MockTest {
         System.out.println(responseString);//返回值
     }
 
-    @Autowired
-    private RedisUtil redisUtil;
-
-    @Test
-    public void test() throws Exception {
-
-        for (int i = 0; i < 5; i++) {
-            int finalI = i;
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    redisUtil.strings().set("ecs-" + finalI, "value-" + finalI);
-                    System.out.println("aaaaaaaaaaaaaa+"+finalI);
-                }
-            }).start();
-        }
-
-    }
 
 }
-*/
+

@@ -2,6 +2,8 @@ package com.jin.design.proxy.jdkdynamic;
 
 import com.alibaba.fastjson.JSON;
 import com.jin.bean.User;
+import com.jin.design.proxy.jdkdynamic.demo.UserService;
+import com.jin.design.proxy.jdkdynamic.demo.UserServiceImpl;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -23,6 +25,9 @@ public class JDKDynamicProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("proxy:" + proxy.getClass() + " method:" + method.getName() +
                 " agrs:" + JSON.toJSONString(args));
+
+        System.out.println(proxy instanceof UserServiceImpl);
+        System.out.println(proxy instanceof UserService);
 
         Long startTime = System.currentTimeMillis();
         System.out.println("before time:" + startTime);

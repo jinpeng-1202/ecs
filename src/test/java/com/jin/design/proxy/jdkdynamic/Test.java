@@ -11,6 +11,7 @@ import com.jin.design.proxy.jdkdynamic.demo.UserServiceImpl;
 public class Test {
 
     public static void main(String[] args) {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         UserService service = new JDKDynamicProxy(new UserServiceImpl()).getProxy();
         User user = new User();
         user.setName("jinp");

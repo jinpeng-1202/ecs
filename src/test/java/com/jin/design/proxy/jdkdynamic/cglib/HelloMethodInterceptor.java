@@ -1,5 +1,6 @@
 package com.jin.design.proxy.jdkdynamic.cglib;
 
+import net.sf.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
@@ -21,6 +22,7 @@ public class HelloMethodInterceptor implements MethodInterceptor {
     }
 
     public static void main(String[] args) {
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\code");
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(Hello.class);
         enhancer.setCallback(new HelloMethodInterceptor());
