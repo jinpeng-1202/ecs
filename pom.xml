@@ -33,7 +33,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <aspectj.version>1.8.9</aspectj.version>
         <httpcore.version>4.4.4</httpcore.version>
-        <httpclient.version>4.5.2</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <httpmime.version>4.5.2</httpmime.version>
         <junit.version>4.12</junit.version>
         <zmxysdk.version>4.12</zmxysdk.version>
